@@ -6,3 +6,7 @@ export interface Session {
   interval_range?: number; // The interval range
   result?: JSON; // The result of the session
 }
+
+// export interface Submission {
+
+// }

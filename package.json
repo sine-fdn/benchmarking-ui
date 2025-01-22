@@ -14,7 +14,8 @@
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "uuid": "^11.0.5"
+    "uuid": "^11.0.5",
+    "vercel": "^39.3.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

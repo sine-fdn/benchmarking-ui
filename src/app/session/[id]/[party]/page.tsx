@@ -54,7 +54,9 @@ export default async function Party({
   return (
     <div>
       <form action={handleSubmission}>
-        <label htmlFor="value">Please enter your value for:</label>
+        <label htmlFor="value">
+          Please enter your value for {session.value_name}:
+        </label>
         <input type="number" id="value" name="value" />
         <button type="submit">Submit</button>
       </form>

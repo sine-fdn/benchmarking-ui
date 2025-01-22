@@ -9,36 +9,51 @@ export default function Waiting() {
     party: string;
   }>();
 
+  enum SessionState {
+    Waiting,
+    Computing,
+    Complete,
+  }
+
   const router = useRouter();
-  const [computing, setComputing] = useState(false);
+  const [sessionState, setSessionState] = useState(SessionState.Waiting);
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const res = await fetch(`waiting/api?id=${id}&party=${party}`);
+      const res = await fetch(`waiting/api`);
       if (res.ok) {
-        const submissions = await res.json();
+        const { submissions, result } = await res.json();
 
-        console.log("res", res);
+        if (submissions.length === 2) {
+          setSessionState(SessionState.Computing);
+        }
 
-        if (submissions.length === 1) {
-          setComputing(true);
+        if (result) {
+          setSessionState(SessionState.Complete);
         }
       }
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [id, party, router]);
+  }, [SessionState.Complete, SessionState.Computing, id, party, router]);
 
-  if (!computing) {
+  if (sessionState == SessionState.Waiting) {
     return (
       <div>
         <p>Waiting for the other party to submit their value...</p>
       </div>
     );
-  } else {
+  } else if (sessionState == SessionState.Computing) {
     return (
       <div>
         <p>Computing...</p>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <p>Thank you for using Polytune today.</p>
+        <p>Goodbye</p>
       </div>
     );
   }

@@ -47,11 +47,16 @@ export default function Session({
 
       <form action={startSession} className="flex flex-col gap-4">
         <label htmlFor="valueName">Name of the Value</label>
-        <input type="text" id="valueName" name="value_name" />
+        <input type="text" id="valueName" name="value_name" required />
         <label htmlFor="description">Description</label>
-        <input type="text" id="description" name="description" />
+        <input type="text" id="description" name="description" required />
         <label htmlFor="intervalRange">Interval range</label>
-        <input type="number" id="intervalRange" name="interval_range" />
+        <input
+          type="number"
+          id="intervalRange"
+          name="interval_range"
+          required
+        />
         <button type="submit">Start</button>
       </form>
     </div>

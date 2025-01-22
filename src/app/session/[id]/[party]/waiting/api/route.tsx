@@ -17,8 +17,19 @@ export async function GET(request: Request) {
   }
 
   const submissions = await sql`
-    SELECT * FROM submissions WHERE session_id = ${id} AND submitter != ${party}
+    SELECT * FROM submissions WHERE session_id = ${id}
   `;
 
-  return NextResponse.json(submissions);
+  const resultDB = await sql`
+    SELECT result FROM sessions WHERE session_id = ${id}
+  `;
+
+  const result = resultDB[0].result;
+
+  const response = {
+    submissions,
+    result,
+  };
+
+  return NextResponse.json(response);
 }

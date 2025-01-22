@@ -21,8 +21,12 @@ export default function Admin() {
   const [result, setResult] = useState(null);
   const [intervalRange, setIntervalRange] = useState(null);
 
-  const link1 = `http://localhost:3000/session/${id}/party1`;
-  const link2 = `http://localhost:3000/session/${id}/party2`;
+  const protocol =
+    typeof window !== "undefined" ? window.location.protocol : "http:";
+  const host = typeof window !== "undefined" ? window.location.host : "";
+  const baseUrl = `${protocol}//${host}`;
+  const link1 = `${baseUrl}/session/${id}/party1`;
+  const link2 = `${baseUrl}/session/${id}/party2`;
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -41,7 +45,7 @@ export default function Admin() {
       } else {
         console.log("Waiting");
       }
-    }, 5000);
+    }, 1000);
 
     return () => clearInterval(interval);
   });

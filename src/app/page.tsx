@@ -27,17 +27,18 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-      <h1>Welcome to Polytune</h1>
-      <div>
-        <ul>
-          <li />
-          Two millionaires meet...
-          <li />
-          What you can do here
-        </ul>
+    <div>
+      <h1 className="text-2xl my-6 font-bold h-full">Welcome to Polytune</h1>
+      <div className="flex flex-col h-full justify-between items-center gap-4">
+        <p>Two millionaires meet...</p>
+        <p>What you can do here</p>
         <form action={createSession}>
-          <button type="submit">Start</button>
+          <button
+            type="submit"
+            className="border border-green-600 rounded px-2 py-1 bg-green-200 mt-6"
+          >
+            Start
+          </button>
         </form>
       </div>
     </div>

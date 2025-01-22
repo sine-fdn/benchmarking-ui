@@ -1,11 +1,8 @@
+import { connectDB } from "@/lib/helperFunctions";
 import { neon } from "@neondatabase/serverless";
 import { redirect } from "next/navigation";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is not defined");
-}
-
-const sql = neon(process.env.DATABASE_URL);
+const sql = connectDB();
 
 export default async function Party({
   params,
@@ -53,12 +50,25 @@ export default async function Party({
 
   return (
     <div>
-      <form action={handleSubmission}>
-        <label htmlFor="value">
+      <form
+        action={handleSubmission}
+        className="flex flex-col gap-2 justify-center mx-auto mt-6"
+      >
+        <label htmlFor="value" className="text-xl">
           Please enter your value for {session.value_name}:
         </label>
-        <input type="number" id="value" name="value" />
-        <button type="submit">Submit</button>
+        <input
+          type="number"
+          id="value"
+          name="value"
+          className="border border-green-600 rounded"
+        />
+        <button
+          type="submit"
+          className="mt-2 mb-4 border border-green-600 rounded px-2 py-1 bg-green-200"
+        >
+          Submit
+        </button>
       </form>
       <p>More information: {session.description}</p>
     </div>

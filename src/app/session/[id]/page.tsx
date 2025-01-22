@@ -39,25 +39,46 @@ export default function Session({
   }
 
   return (
-    <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-      <p>
+    <div>
+      <p className="text-xl my-6">
         Verify whether two values are within a certain range of each other
         without having to reveal these values in plain text
       </p>
 
-      <form action={startSession} className="flex flex-col gap-4">
+      <form
+        action={startSession}
+        className="flex flex-col gap-4 justify-center w-1/2 mx-auto mt-6"
+      >
         <label htmlFor="valueName">Name of the Value</label>
-        <input type="text" id="valueName" name="value_name" required />
+        <input
+          type="text"
+          id="valueName"
+          name="value_name"
+          required
+          className="border border-green-600 rounded"
+        />
         <label htmlFor="description">Description</label>
-        <input type="text" id="description" name="description" required />
+        <input
+          type="text"
+          id="description"
+          name="description"
+          required
+          className="border border-green-600 rounded"
+        />
         <label htmlFor="intervalRange">Interval range</label>
         <input
           type="number"
           id="intervalRange"
           name="interval_range"
           required
+          className="border border-green-600 rounded"
         />
-        <button type="submit">Start</button>
+        <button
+          type="submit"
+          className="mt-4 border border-green-600 rounded px-2 py-1 bg-green-200"
+        >
+          Start
+        </button>
       </form>
     </div>
   );

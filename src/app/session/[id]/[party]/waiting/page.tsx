@@ -32,26 +32,26 @@ export default function Waiting() {
           setSessionState(SessionState.Complete);
         }
       }
-    }, 5000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [SessionState.Complete, SessionState.Computing, id, party, router]);
 
   if (sessionState == SessionState.Waiting) {
     return (
-      <div>
+      <div className="mt-6 text-xl">
         <p>Waiting for the other party to submit their value...</p>
       </div>
     );
   } else if (sessionState == SessionState.Computing) {
     return (
-      <div>
+      <div className="mt-6 text-xl">
         <p>Computing...</p>
       </div>
     );
   } else {
     return (
-      <div>
+      <div className="mt-6 text-xl">
         <p>Thank you for using Polytune today.</p>
         <p>Goodbye</p>
       </div>

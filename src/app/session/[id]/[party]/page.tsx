@@ -1,5 +1,4 @@
 import { connectDB } from "@/lib/helperFunctions";
-import { neon } from "@neondatabase/serverless";
 import { redirect } from "next/navigation";
 
 const sql = connectDB();
@@ -9,9 +8,9 @@ export default async function Party({
 }: {
   params: Promise<{ id: string; party: string }>;
 }) {
-  async function getSession() {
-    "use server";
+  "use server";
 
+  async function getSession() {
     const { id } = await params;
 
     const session = await sql`
@@ -31,22 +30,21 @@ export default async function Party({
     "use server";
 
     const { party } = await params;
+    const alias = formData.get("alias") as string;
+    const value = formData.get("value") as string;
 
     const session_id = session.session_id;
 
-    if (!process.env.DATABASE_URL) {
-      throw new Error("DATABASE_URL is not defined");
-    }
-
-    const sql = neon(process.env.DATABASE_URL);
-
+    const sql = connectDB();
     await sql`
-      INSERT INTO submissions (session_id, submitter, submission)
-      VALUES (${session_id}, ${party}, ${formData.get("value")})
+      INSERT INTO submissions (session_id, submitter, alias, submission)
+      VALUES (${session_id}, ${party}, ${alias}, ${value})
     `;
 
     redirect(`/session/${session_id}/${party}/waiting`);
   }
+
+  const inputClasses = "border border-green-600 rounded";
 
   return (
     <div>
@@ -54,23 +52,26 @@ export default async function Party({
         action={handleSubmission}
         className="flex flex-col gap-2 justify-center mx-auto mt-6"
       >
-        <label htmlFor="value" className="text-xl">
+        <label htmlFor="alias" className="text-xl">
+          Please enter an alias (e.g. Party 1, Alice, etc.):
+        </label>
+        <input type="text" id="alias" name="alias" className={inputClasses} />
+        <p>Other participants can see your alias</p>
+
+        <label htmlFor="value" className="text-xl mt-4">
           Please enter your value for {session.value_name}:
         </label>
-        <input
-          type="number"
-          id="value"
-          name="value"
-          className="border border-green-600 rounded"
-        />
+        <input type="number" id="value" name="value" className={inputClasses} />
+        <p>Other participants cannot see your input</p>
+
         <button
           type="submit"
-          className="mt-2 mb-4 border border-green-600 rounded px-2 py-1 bg-green-200"
+          className="mt-4 mb-4 border border-green-600 rounded px-2 py-1 bg-green-200"
         >
           Submit
         </button>
       </form>
-      <p>More information: {session.description}</p>
+      <p>Description of the value requested: {session.description}</p>
     </div>
   );
 }

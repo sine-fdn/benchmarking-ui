@@ -14,8 +14,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="flex items-center justify-center p-4">{children}</main>
-        <footer className="absolute bottom-0 p-4 flex items-center justify-center w-full">
+        <main className="flex items-center justify-center p-4 h-[calc(100vh-64px)]">
+          {children}
+        </main>
+        <footer className="p-4 flex items-center justify-center w-full h-64px">
           SINE Foundation
         </footer>
       </body>

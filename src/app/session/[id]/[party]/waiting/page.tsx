@@ -1,60 +1,43 @@
-"use client";
+import { AutoRefreshWrapper } from "@/lib/clientComponents";
+import { connectDB } from "@/lib/helperFunctions";
+import { redirect } from "next/navigation";
 
-import { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
+async function WaitingServer({
+  params,
+}: {
+  params: Promise<{ id: string; party: string }>;
+}) {
+  const sql = connectDB();
 
-export default function Waiting() {
-  const { id, party } = useParams<{
-    id: string;
-    party: string;
-  }>();
+  const { id, party } = await params;
 
-  enum SessionState {
-    Waiting,
-    Computing,
-    Complete,
-  }
+  const submissions = await sql`
+    SELECT * FROM submissions WHERE session_id = ${id}
+  `;
 
-  const router = useRouter();
-  const [sessionState, setSessionState] = useState(SessionState.Waiting);
-
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      const res = await fetch(`waiting/api`);
-      if (res.ok) {
-        const { submissions, result } = await res.json();
-
-        if (submissions.length === 2) {
-          setSessionState(SessionState.Computing);
-        }
-
-        if (result) {
-          setSessionState(SessionState.Complete);
-        }
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [SessionState.Complete, SessionState.Computing, id, party, router]);
-
-  if (sessionState == SessionState.Waiting) {
-    return (
-      <div className="mt-6 text-xl">
-        <p>Waiting for the other party to submit their value...</p>
-      </div>
-    );
-  } else if (sessionState == SessionState.Computing) {
-    return (
-      <div className="mt-6 text-xl">
-        <p>Computing...</p>
-      </div>
-    );
+  if (submissions.length === 3) {
+    redirect(`/session/${id}/${party}/computing`);
   } else {
     return (
       <div className="mt-6 text-xl">
-        <p>Thank you for using Polytune today.</p>
-        <p>Goodbye</p>
+        <p>Waiting for the other parties to submit their value...</p>
+        <p>
+          Please do not close this tab. All participants need to stay online
+          during the computation
+        </p>
       </div>
     );
   }
+}
+
+export default function Waiting({
+  params,
+}: {
+  params: Promise<{ id: string; party: string }>;
+}) {
+  return (
+    <AutoRefreshWrapper>
+      <WaitingServer params={params} />
+    </AutoRefreshWrapper>
+  );
 }

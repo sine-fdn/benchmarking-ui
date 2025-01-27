@@ -1,4 +1,4 @@
-import { neon } from "@neondatabase/serverless";
+import { connectDB } from "@/lib/helperFunctions";
 import { redirect } from "next/navigation";
 
 export default function Session({
@@ -11,11 +11,7 @@ export default function Session({
 
     const { id } = await params;
 
-    if (!process.env.DATABASE_URL) {
-      throw new Error("DATABASE_URL is not defined");
-    }
-
-    const sql = neon(process.env.DATABASE_URL);
+    const sql = connectDB();
 
     const session = await sql`
         SELECT * FROM sessions WHERE session_id = ${id}
@@ -35,13 +31,13 @@ export default function Session({
       WHERE session_id = ${id}
     `;
 
-    redirect(`/session/${id}/admin`);
+    redirect(`/session/${id}/links`);
   }
 
   return (
     <div>
       <p className="text-xl my-6">
-        Verify whether two values are within a certain range of each other
+        Verify whether three values are within a certain range of each other
         without having to reveal these values in plain text
       </p>
 

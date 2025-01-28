@@ -1,5 +1,5 @@
 import { AutoRefreshWrapper } from "@/lib/clientComponents";
-import { connectDB } from "@/lib/helperFunctions";
+import { sql } from "@/lib/db";
 import { redirect } from "next/navigation";
 
 async function ComputingServer({
@@ -8,8 +8,6 @@ async function ComputingServer({
   params: Promise<{ id: string }>;
 }) {
   "use server";
-
-  const sql = connectDB();
 
   const { id } = await params;
 

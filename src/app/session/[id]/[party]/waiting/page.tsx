@@ -1,5 +1,5 @@
 import { AutoRefreshWrapper } from "@/lib/clientComponents";
-import { connectDB } from "@/lib/helperFunctions";
+import { sql } from "@/lib/db";
 import { redirect } from "next/navigation";
 
 async function WaitingServer({
@@ -7,8 +7,6 @@ async function WaitingServer({
 }: {
   params: Promise<{ id: string; party: string }>;
 }) {
-  const sql = connectDB();
-
   const { id, party } = await params;
 
   const submissions = await sql`

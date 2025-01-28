@@ -2,7 +2,7 @@ import { Session } from "@/lib/types";
 import { redirect } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
-import { connectDB } from "@/lib/helperFunctions";
+import { sql } from "@/lib/db";
 
 export default function Home() {
   async function createSession() {
@@ -12,8 +12,6 @@ export default function Home() {
       sessionID: uuidv4(),
       status: "created",
     };
-
-    const sql = connectDB();
 
     await sql`
       INSERT INTO sessions (session_id, status)

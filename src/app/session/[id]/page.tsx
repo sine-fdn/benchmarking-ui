@@ -1,4 +1,4 @@
-import { connectDB } from "@/lib/helperFunctions";
+import { sql } from "@/lib/db";
 import { redirect } from "next/navigation";
 
 export default function Session({
@@ -10,8 +10,6 @@ export default function Session({
     "use server";
 
     const { id } = await params;
-
-    const sql = connectDB();
 
     const session = await sql`
         SELECT * FROM sessions WHERE session_id = ${id}

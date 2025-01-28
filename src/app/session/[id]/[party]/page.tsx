@@ -1,7 +1,5 @@
-import { connectDB } from "@/lib/helperFunctions";
+import { sql } from "@/lib/db";
 import { redirect } from "next/navigation";
-
-const sql = connectDB();
 
 export default async function Party({
   params,
@@ -35,7 +33,6 @@ export default async function Party({
 
     const session_id = session.session_id;
 
-    const sql = connectDB();
     await sql`
       INSERT INTO submissions (session_id, submitter, alias, submission)
       VALUES (${session_id}, ${party}, ${alias}, ${value})

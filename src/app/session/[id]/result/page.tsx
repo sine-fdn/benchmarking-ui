@@ -1,4 +1,4 @@
-import { connectDB } from "@/lib/helperFunctions";
+import { sql } from "@/lib/db";
 import Link from "next/link";
 
 export default async function Result({
@@ -6,8 +6,6 @@ export default async function Result({
 }: {
   params: Promise<{ id: string; party: string }>;
 }) {
-  const sql = connectDB();
-
   const { id } = await params;
 
   const resultDB = await sql`

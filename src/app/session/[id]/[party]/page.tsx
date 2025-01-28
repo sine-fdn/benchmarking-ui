@@ -47,23 +47,36 @@ export default async function Party({
   const inputClasses = "border border-green-600 rounded";
 
   return (
-    <div>
+    <div className="text-center flex flex-col justify-center items-center">
+      <h1>Polytune</h1>
+      <div className="text-justify w-1/2 mt-6">
+        <p className="mb-8">
+          Welcome to Polytune, SINE&apos;s Secure Multiparty Computation engine.
+          Polytune allows three parties to engage in a computation without
+          revealing their individual inputs. In this case, Polytune will compute
+          the average of {session.value_name} and for each participant determine
+          whether the difference between the average and their input is within a{" "}
+          {session.interval_range} range.
+        </p>
+        <p className="text-center mb-6">
+          <strong>Please remain online during the entire computation</strong>
+        </p>
+      </div>
       <form
         action={handleSubmission}
-        className="flex flex-col gap-2 justify-center mx-auto mt-6"
+        className="flex flex-col gap-2 justify-center mx-auto mt-6 text-justify"
       >
-        <label htmlFor="alias" className="text-xl">
-          Please enter an alias (e.g. Party 1, Alice, etc.):
+        <label htmlFor="alias" className="">
+          Please enter an alias for yourself (e.g. Alice, ACME, Bob etc.):
+          <p className="text-xs">Other participants can see your alias</p>
         </label>
         <input type="text" id="alias" name="alias" className={inputClasses} />
-        <p>Other participants can see your alias</p>
 
-        <label htmlFor="value" className="text-xl mt-4">
+        <label htmlFor="value" className="mt-2">
           Please enter your value for {session.value_name}:
+          <p className="text-xs">Your input will remain private</p>
         </label>
         <input type="number" id="value" name="value" className={inputClasses} />
-        <p>Other participants cannot see your input</p>
-
         <button
           type="submit"
           className="mt-4 mb-4 border border-green-600 rounded px-2 py-1 bg-green-200"
@@ -71,7 +84,9 @@ export default async function Party({
           Submit
         </button>
       </form>
-      <p>Description of the value requested: {session.description}</p>
+      <p className="text-justify mt-8">
+        More about {session.value_name}: {session.description}
+      </p>
     </div>
   );
 }

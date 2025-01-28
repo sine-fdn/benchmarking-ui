@@ -24,6 +24,8 @@ export default async function Party({
   const session = await getSession();
 
   async function handleSubmission(formData: FormData) {
+    "use server";
+
     const { party } = await params;
     const alias = formData.get("alias") as string;
     const value = formData.get("value") as string;

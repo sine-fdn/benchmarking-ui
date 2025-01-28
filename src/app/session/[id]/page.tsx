@@ -60,14 +60,14 @@ export default function Session({
           required
           className="border border-green-600 rounded mb-4"
         />
-        <label htmlFor="intervalRange">Interval range</label>
+        <label htmlFor="intervalRange">Interval range percentage</label>
         <p className="text-xs mb-2">
-          Polytune will privately compute for each participant whether the
-          difference between the average and their input value is smaller than
-          the integer provided here. E.g.: If the average is 5 and the interval
-          range is 2, the participant&apos;s input value must be between 3 and 7
-          to be considered within the range; if the value is 8, it will be
-          considered above the range and if the value is 2, it will be
+          Polytune will privately compute for each participant whether their
+          input is in the range of the average defined by the percentage
+          provided here. E.g.: If the average is x=10 and the interval range is
+          5, the participant&apos;s input value must be between 0.95x=9.5 and
+          1.05x=10.5 to be considered within the range; if the value is 12, it
+          will be considered above the range and if the value is 8, it will be
           considered below the range.
         </p>
         <input

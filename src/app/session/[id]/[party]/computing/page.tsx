@@ -23,13 +23,15 @@ async function ComputingServer({
 
   const result = submissions.map((s) => {
     const absDiff = Math.abs(avg - s.submission);
-    if (absDiff > interval && s.submission > avg) {
+    const diffPercentage = (absDiff / avg) * 100;
+
+    if (diffPercentage > interval && s.submission > avg) {
       return {
         submitter: s.submitter,
         alias: s.alias,
         result: "above",
       };
-    } else if (absDiff > interval && s.submission < avg) {
+    } else if (diffPercentage > interval && s.submission < avg) {
       return {
         submitter: s.submitter,
         alias: s.alias,

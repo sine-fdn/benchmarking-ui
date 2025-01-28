@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
 import { sql } from "@/lib/db";
+import { SubmitButton } from "@/components/SubmitButton";
 
 export default function Home() {
   async function createSession() {
@@ -43,12 +44,7 @@ export default function Home() {
         </p>
 
         <form action={createSession}>
-          <button
-            type="submit"
-            className="border border-green-600 rounded px-2 py-1 bg-green-200 mt-6"
-          >
-            Start
-          </button>
+          <SubmitButton>Start</SubmitButton>
         </form>
       </div>
     </div>

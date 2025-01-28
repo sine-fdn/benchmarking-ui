@@ -16,21 +16,6 @@ export default async function Result({
 
   type Result = "within" | "below" | "above";
 
-  // return result.map(
-  //   (r: { submitter: string; alias: string; result: Result }) => {
-  //     console.log("result", r);
-  //     return (
-  //       <div key={r.submitter}>
-  //         <h1>Result</h1>
-  //         <p>{r.submitter}</p>
-  //         <p>{r.alias}</p>
-  //         <p>{r.result}</p>
-  //       </div>
-  //     );
-  //   }
-  // );
-  // const bucketClasses = "p-16 rounded border";
-
   const above = result.filter((r: { result: Result }) => r.result === "above");
   const within = result.filter(
     (r: { result: Result }) => r.result === "within"
@@ -78,7 +63,7 @@ export default async function Result({
       </div>
       <Link
         href={"/"}
-        className="border border-green-600 rounded px-2 py-1 bg-green-200 mt-6"
+        className="border border-green-600 rounded px-2 py-1 bg-green-200 mt-6 hover:bg-green-600 hover:text-white"
       >
         Start new computation
       </Link>

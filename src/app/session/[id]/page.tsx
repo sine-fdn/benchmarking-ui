@@ -1,3 +1,4 @@
+import { SubmitButton } from "@/components/SubmitButton";
 import { sql } from "@/lib/db";
 import { redirect } from "next/navigation";
 
@@ -76,12 +77,7 @@ export default function Session({
           required
           className="border border-green-600 rounded mb-4"
         />
-        <button
-          type="submit"
-          className="mt-4 border border-green-600 rounded px-2 py-1 bg-green-200"
-        >
-          Start
-        </button>
+        <SubmitButton>Start</SubmitButton>
       </form>
     </div>
   );

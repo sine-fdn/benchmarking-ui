@@ -1,3 +1,4 @@
+import { SubmitButton } from "@/components/SubmitButton";
 import { sql } from "@/lib/db";
 import { redirect } from "next/navigation";
 
@@ -6,8 +7,6 @@ export default async function Party({
 }: {
   params: Promise<{ id: string; party: string }>;
 }) {
-  "use server";
-
   async function getSession() {
     const { id } = await params;
 
@@ -25,8 +24,6 @@ export default async function Party({
   const session = await getSession();
 
   async function handleSubmission(formData: FormData) {
-    "use server";
-
     const { party } = await params;
     const alias = formData.get("alias") as string;
     const value = formData.get("value") as string;
@@ -74,12 +71,7 @@ export default async function Party({
           <p className="text-xs">Your input will remain private</p>
         </label>
         <input type="number" id="value" name="value" className={inputClasses} />
-        <button
-          type="submit"
-          className="mt-4 mb-4 border border-green-600 rounded px-2 py-1 bg-green-200"
-        >
-          Submit
-        </button>
+        <SubmitButton>Submit</SubmitButton>
       </form>
       <p className="text-justify mt-8">
         More about {session.value_name}: {session.description}

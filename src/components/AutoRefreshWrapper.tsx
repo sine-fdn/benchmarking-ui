@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 
 export function AutoRefreshWrapper({
@@ -7,6 +5,7 @@ export function AutoRefreshWrapper({
 }: {
   children: React.ReactNode;
 }) {
+  "use client";
   React.useEffect(() => {
     const interval = setInterval(() => {
       window.location.reload();

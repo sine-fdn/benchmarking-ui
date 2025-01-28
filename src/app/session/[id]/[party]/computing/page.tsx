@@ -1,4 +1,4 @@
-import { AutoRefreshWrapper } from "@/lib/clientComponents";
+import { AutoRefreshWrapper } from "@/components/AutoRefreshWrapper";
 import { sql } from "@/lib/db";
 import { redirect } from "next/navigation";
 
@@ -7,8 +7,6 @@ async function ComputingServer({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  "use server";
-
   const { id } = await params;
 
   const submissions = await sql`

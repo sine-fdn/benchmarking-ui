@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Polytune",
@@ -14,12 +15,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="flex items-center justify-center p-4 h-[calc(100vh-64px)]">
-          {children}
-        </main>
-        <footer className="p-4 flex items-center justify-center w-full h-64px">
-          SINE Foundation
-        </footer>
+        <div className="flex flex-col h-screen pt-20">
+          <main>
+            {children}
+          </main>
+          <footer className="flex justify-center p-4 absolute bottom-0 w-full">
+            <a href="https://sine.foundation" target="_blank" rel="noreferrer">
+              <Image
+                src="/sine-logo.svg"
+                alt="SINE logo"
+                width={100}
+                height={100}
+              />
+            </a>
+          </footer>
+        </div>
       </body>
     </html>
   );

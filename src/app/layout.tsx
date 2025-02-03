@@ -15,8 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="flex flex-col h-screen pt-20">
+        <div className="flex flex-col items-center h-screen pt-20 text-center">
           <main>
+            <h1>Polytune</h1>
             {children}
           </main>
           <footer className="flex justify-center p-4 absolute bottom-0 w-full">

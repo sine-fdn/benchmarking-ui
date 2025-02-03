@@ -24,7 +24,6 @@ export default function Home() {
 
   return (
     <div className="text-center">
-      <h1>Welcome to Polytune</h1>
       <div className="flex flex-col h-full justify-between items-center gap-4">
         <p>
           Secure Multi Party Computation (SMPC) allows several parties to

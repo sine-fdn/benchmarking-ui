@@ -11,55 +11,45 @@ export default async function Links({
   const link2 = `${baseUrl}/session/${id}/party2`;
   const link3 = `${baseUrl}/session/${id}/party3`;
 
-  const linkClasses = "text-green-600 underline mb-2";
+  const linkClasses =
+    "border border-black rounded-3xl px-4 py-2 underline decoration-sine-purple font-mono text-sm w-fit";
+
+  const participantClasses =
+    "bg-sine-purple border border-black rounded-3xl xl:pt-0.5 xl:w-1/3 xl:h-1/2 w-1/4 mt-6";
 
   return (
     <div className="text-center flex flex-col justify-center items-center">
-      <p className="text-xl my-6">
-        Share the following links with the parties to start the computation
+      <p>Give each participant one link:</p>
+      <div className="grid xl:grid-flow-col xl:grid-rows-3 xl:grid-cols-3 gap-x-3 mt-2 mb-12 grid-flow-row mx-4">
+        <div className="flex justify-center items-end">
+          <p className={participantClasses}>Participant 1</p>
+        </div>
+        <div className="flex justify-center bg-black w-[1.5px] mx-auto">|</div>
+        <div className={linkClasses}>
+          <a href={link1}>{link1}</a>
+        </div>
+        <div className="flex justify-center items-end">
+          <p className={participantClasses}>Participant 2</p>
+        </div>
+        <div className="flex justify-center bg-black w-[1.5px] mx-auto">|</div>
+        <div className={linkClasses}>
+          <a href={link2}>{link2}</a>
+        </div>
+        <div className="flex justify-center items-end">
+          <p className={participantClasses}>Participant 3</p>
+        </div>
+        <div className="flex justify-center bg-black w-[1.5px] mx-auto">|</div>
+        <div className={linkClasses}>
+          <a href={link3}>{link3}</a>
+        </div>
+      </div>
+      <p className="text-center">
+        Each participant will be asked to provide a public alias and an input,
+        which will remain private.
       </p>
-      <p className="text-justify w-1/2 mb-6">
-        Three parties are needed for the computation to remain private
-        (otherwise, the results could be easily reverse engineered). <br />
-        Please make sure to find two other parties willing to engage in this
-        pilot with you and provide each of them with one of the following links:
+      <p className="text-center mt-12 bg-sine-red rounded-3xl px-4 py-2 border border-black">
+        All participants must be online at the same time!
       </p>
-
-      <a className={linkClasses} href={link1}>
-        {link1}
-      </a>
-      <a className={linkClasses} href={link2}>
-        {link2}
-      </a>
-      <p className="mt-6 mb-2">
-        Then, do not forget to use a link for yourself:
-      </p>
-      <a className={linkClasses} href={link3}>
-        {link3}
-      </a>
-
-      <p className="text-justify w-1/2 mt-6">
-        Each party will be asked to provide an alias and an input value.
-        Polytune will take each value and privately compute their average. Then,
-        it will calculate whether the difference between the average and each
-        party&apos;s input value is smaller than the interval range you set.{" "}
-      </p>
-      <p className="text-justify w-1/2 mt-6">
-        <strong>Please note:</strong> all three parties must remain online
-        during the entire computation. Please make sure to inform all parties of
-        this requirement, lest the computation fails.
-      </p>
-      <p className="text-justify w-1/2 mt-6">
-        The current Polytune implementation is a pilot and may contain bugs.
-      </p>
-      <h2 className="text-xl font-bold mt-6 mb-2">Learn more about SMPC</h2>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/l25jcolQW6Q?si=HsuyLUada_OQFpXS"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-      />
     </div>
   );
 }

@@ -23,29 +23,30 @@ export default function Home() {
   }
 
   return (
-    <div className="text-center">
-      <div className="flex flex-col h-full justify-between items-center gap-4">
-        <p>
-          Secure Multi Party Computation (SMPC) allows several parties to
-          perform a computation together without revealing their individual
-          inputs. Here is an example:
-        </p>
-        <Image
-          src={"/smpc.png"}
-          alt={"SMPC example"}
-          width={1000}
-          height={1000}
-        />
-        <p>
-          SINE Foundation aims to bring such high end technologies to everyone.
-          On this platform, you can use SMPC directly on the browser, no
-          cryptographic knowledge required. Give it a try!
-        </p>
-
-        <form action={createSession}>
-          <SubmitButton>Start</SubmitButton>
-        </form>
-      </div>
+    <div className="flex flex-col justify-between items-center gap-4">
+      <h1>Private Benchmark</h1>
+      <p className="max-w-2xl">
+        This platform let&apos;s you benchmark the values of three participants{" "}
+        <strong>without disclosing their inputs</strong> to each other, nor to a
+        third party.
+      </p>
+      <p className="max-w-2xl">
+        Sounds impossible? Not with <strong>Polytune</strong>, SINE
+        Foundation&apos;s Secure Multiparty Computation (MPC) engine.
+      </p>
+      <Image
+        src={"/smpc.png"}
+        alt={"SMPC example"}
+        width={1000}
+        height={1000}
+      />
+      <p className="max-w-2xl">
+        SINE Foundation brings advanced cryptography to everyone. You can use it
+        in the browser, without any technical knowledge.
+      </p>
+      <form action={createSession}>
+        <SubmitButton>Give it a try!</SubmitButton>
+      </form>
     </div>
   );
 }

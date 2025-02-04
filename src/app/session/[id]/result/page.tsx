@@ -14,6 +14,12 @@ export default async function Result({
 
   const result = resultDB[0].result;
 
+  const session = await sql`
+    SELECT * FROM sessions WHERE session_id = ${id}
+  `;
+
+  const { interval_range } = session[0];
+
   type Result = "within" | "below" | "above";
 
   const above = result.filter((r: { result: Result }) => r.result === "above");
@@ -23,16 +29,16 @@ export default async function Result({
   const below = result.filter((r: { result: Result }) => r.result === "below");
 
   const bucketClasses =
-    "h-44 w-44 rounded border flex flex-col justify-between";
-  const aboveBucketClasses = `${bucketClasses} bg-blue-100 border-blue-400`;
-  const withinBucketClasses = `${bucketClasses} bg-yellow-100 border-yellow-400`;
-  const belowBucketClasses = `${bucketClasses} bg-purple-100 border-purple-400`;
+    "h-44 w-44 rounded-3xl border flex flex-col justify-between";
+  const aboveBucketClasses = `${bucketClasses} bg-sine-blue border-black`;
+  const withinBucketClasses = `${bucketClasses} bg-sine-yellow border-black`;
+  const belowBucketClasses = `${bucketClasses} bg-sine-red border-black`;
 
   return (
-    <div className="flex flex-col gap-4 text-center">
+    <div className="flex flex-col gap-4 justify-center">
       <h1>Result</h1>
       <div className={aboveBucketClasses}>
-        <h3 className="text-blue-400">Above</h3>
+        <h3>Above {interval_range}%</h3>
         <div>
           {above.map(
             (r: { submitter: string; alias: string; result: Result }) => (
@@ -42,7 +48,7 @@ export default async function Result({
         </div>
       </div>
       <div className={withinBucketClasses}>
-        <h3 className="text-yellow-400">Within</h3>
+        <h3>Within Average</h3>
         <div>
           {within.map(
             (r: { submitter: string; alias: string; result: Result }) => (

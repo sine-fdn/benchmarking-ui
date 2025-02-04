@@ -40,7 +40,7 @@ export default function Session({
     <>
       <form action={startSession} className="flex flex-col gap-4 items-center">
         <p className="text-l max-w-2xl text-center leading-8">
-          For 3 parties, check whether their
+          For 3 participants, check whether their
           <input
             type="text"
             id="valueName"
@@ -63,7 +63,7 @@ export default function Session({
             type="number"
             id="intervalRange"
             name="interval_range"
-            className={`w-14 ${inputClasses}`}
+            className={`w-16 ${inputClasses}`}
             placeholder="10"
             required
           />

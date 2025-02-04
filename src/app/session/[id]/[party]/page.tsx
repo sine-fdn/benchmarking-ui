@@ -21,7 +21,8 @@ export default async function Party({
     return session[0];
   }
 
-  const session = await getSession();
+  const { session_id, value_name, interval_range, description } =
+    await getSession();
 
   async function handleSubmission(formData: FormData) {
     "use server";
@@ -29,8 +30,6 @@ export default async function Party({
     const { party } = await params;
     const alias = formData.get("alias") as string;
     const value = formData.get("value") as string;
-
-    const session_id = session.session_id;
 
     await sql`
       INSERT INTO submissions (session_id, submitter, alias, submission)
@@ -40,43 +39,58 @@ export default async function Party({
     redirect(`/session/${session_id}/${party}/waiting`);
   }
 
-  const inputClasses = "border border-green-600 rounded";
+  const inputClasses =
+    "border-4 border-sine-purple rounded-xl px-2 text-right mx-1.5";
 
   return (
-    <div className="text-center flex flex-col justify-center items-center">
-      <h1>Polytune</h1>
-      <div className="text-justify w-1/2 mt-6">
-        <p className="mb-8">
-          Welcome to Polytune, SINE&apos;s Secure Multiparty Computation engine.
-          Polytune allows three parties to engage in a computation without
-          revealing their individual inputs. In this case, Polytune will compute
-          the average of {session.value_name} and for each participant determine
-          whether the difference between the average and their input is within a{" "}
-          {session.interval_range} range.
+    <div className="text-center flex flex-col justify-center items-center max-w-2xl">
+      <h1>Welcome to Polytune</h1>
+      <p className="leading-8">
+        You&apos;ve been invited to join a private benchmark, powered
+        by SINE&apos;s Secure Multi Party Computation engine{" "}
+        <strong>Polytune</strong>.
+      </p>
+      <p className="text-center mt-4 leading-8">
+        You have been asked to provide your input for{" "}
+        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">{value_name}</span>,
+        in{" "}
+        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">{description}</span>.{" "}
+        <strong>Your input will remain private</strong> while Polytune
+        calculates the average of all three participants joining this session.
+      </p>
+      <p className="text-center mt-4 leading-8">
+        Without disclosing inputs, Polytune will determine for each participant
+        whether the difference between their input and the average is within a
+        range of{" "}
+        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
+          {interval_range}%
+        </span>
+        .
+      </p>
+      <form action={handleSubmission}>
+        <p className="text-center mt-8 leading-8 mb-6">
+          Your public alias is{" "}
+          <input
+            type="text"
+            id="alias"
+            name="alias"
+            className={inputClasses}
+            required
+          />{" "}
+          and your <strong>private</strong> input is{" "}
+          <input
+            type="number"
+            id="value"
+            name="value"
+            className={`${inputClasses} w-32`}
+            placeholder={`${value_name} in ${description}`}
+            required
+          />
         </p>
-        <p className="text-center mb-6">
-          <strong>Please remain online during the entire computation</strong>
-        </p>
-      </div>
-      <form
-        action={handleSubmission}
-        className="flex flex-col gap-2 justify-center mx-auto mt-6 text-justify"
-      >
-        <label htmlFor="alias" className="">
-          Please enter an alias for yourself (e.g. Alice, ACME, Bob etc.):
-          <p className="text-xs">Other participants can see your alias</p>
-        </label>
-        <input type="text" id="alias" name="alias" className={inputClasses} />
-
-        <label htmlFor="value" className="mt-2">
-          Please enter your value for {session.value_name}:
-          <p className="text-xs">Your input will remain private</p>
-        </label>
-        <input type="number" id="value" name="value" className={inputClasses} />
         <SubmitButton>Submit</SubmitButton>
       </form>
-      <p className="text-justify mt-8">
-        More about {session.value_name}: {session.description}
+      <p className="text-center mt-12 bg-sine-red rounded-3xl px-4 py-2 border border-black">
+        Please remain online!
       </p>
     </div>
   );

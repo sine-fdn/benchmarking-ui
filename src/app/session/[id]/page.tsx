@@ -33,52 +33,45 @@ export default function Session({
     redirect(`/session/${id}/links`);
   }
 
-  return (
-    <div>
-      <p className="text-xl my-6 text-center">
-        Verify whether three values are within a certain range of each other
-        without having to reveal these values in plain text
-      </p>
+  const inputClasses =
+    "border-4 border-sine-purple rounded-xl px-2 text-right mx-1.5";
 
-      <form
-        action={startSession}
-        className="flex flex-col justify-center w-1/2 mx-auto mt-6"
-      >
-        <label htmlFor="valueName">Name of the Value</label>
-        <input
-          type="text"
-          id="valueName"
-          name="value_name"
-          required
-          className="border border-green-600 rounded mb-4"
-        />
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          required
-          className="border border-green-600 rounded mb-4"
-        />
-        <label htmlFor="intervalRange">Interval range percentage</label>
-        <p className="text-xs mb-2">
-          Polytune will privately compute for each participant whether their
-          input is in the range of the average defined by the percentage
-          provided here. E.g.: If the average is x=10 and the interval range is
-          5, the participant&apos;s input value must be between 0.95x=9.5 and
-          1.05x=10.5 to be considered within the range; if the value is 12, it
-          will be considered above the range and if the value is 8, it will be
-          considered below the range.
+  return (
+    <>
+      <form action={startSession} className="flex flex-col gap-4 items-center">
+        <p className="text-l max-w-2xl text-center leading-8">
+          For 3 parties, check whether their
+          <input
+            type="text"
+            id="valueName"
+            name="value_name"
+            className={`w-36 ${inputClasses}`}
+            placeholder="CO2e emissions"
+            required
+          />
+          in
+          <input
+            type="text"
+            id="description" // TODO: change to UNIT
+            name="description" // TODO: Change to UNIT
+            required
+            placeholder="kg"
+            className={`w-14 ${inputClasses}`}
+          />
+          are within a
+          <input
+            type="number"
+            id="intervalRange"
+            name="interval_range"
+            className={`w-14 ${inputClasses}`}
+            placeholder="10"
+            required
+          />
+          % range of each other. <em>Privately</em>, using strong encryption
+          built by SINE Foundation.
         </p>
-        <input
-          type="number"
-          id="intervalRange"
-          name="interval_range"
-          required
-          className="border border-green-600 rounded mb-4"
-        />
         <SubmitButton>Start</SubmitButton>
       </form>
-    </div>
+    </>
   );
 }

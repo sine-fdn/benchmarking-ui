@@ -9,6 +9,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        "sine-green": "#B7F2CE",
+        "sine-purple": "#E9AEFF",
+        "sine-blue": "#B4EDFF",
+        "sine-red": "#FF8F9D",
+        "sine-yellow": "#FFF493",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

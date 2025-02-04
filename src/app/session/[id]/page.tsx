@@ -33,44 +33,45 @@ export default function Session({
     redirect(`/session/${id}/links`);
   }
 
-  const inputClasses = "border border-green-600 rounded border-opacity-25 px-1";
+  const inputClasses =
+    "border-4 border-sine-purple rounded-xl px-2 text-right mx-1.5";
 
   return (
     <>
       <form action={startSession} className="flex flex-col gap-4 items-center">
-        <p className="text-l w-96 text-center">
-          In this pilot, you can check whether three values of {" "}
+        <p className="text-l max-w-2xl text-center leading-8">
+          For 3 parties, check whether their
           <input
             type="text"
             id="valueName"
             name="value_name"
-            className={`w-24 my-2 ${inputClasses}`}
-            placeholder="value name"
+            className={`w-36 ${inputClasses}`}
+            placeholder="CO2e emissions"
             required
-          />{" "}
-          (in{" "}
+          />
+          in
           <input
             type="text"
             id="description" // TODO: change to UNIT
             name="description" // TODO: Change to UNIT
             required
-            placeholder="unit"
-            className={`w-10 ${inputClasses}`}
+            placeholder="kg"
+            className={`w-14 ${inputClasses}`}
           />
-          ) are within a{" "}
+          are within a
           <input
             type="number"
             id="intervalRange"
             name="interval_range"
-            className={`w-12 ${inputClasses}`}
-            placeholder="x"
+            className={`w-14 ${inputClasses}`}
+            placeholder="10"
             required
           />
-          % range of each other without revealing the values in plain text.
+          % range of each other. <em>Privately</em>, using strong encryption
+          built by SINE Foundation.
         </p>
-      <SubmitButton>Start</SubmitButton>
+        <SubmitButton>Start</SubmitButton>
       </form>
-
     </>
   );
 }

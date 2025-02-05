@@ -36,20 +36,29 @@ export default function Home() {
     "border-4 border-sine-purple rounded-xl px-2 text-right mx-1.5";
 
   return (
-    <div className="flex flex-col justify-between items-center gap-4 max-w-2xl">
-      <h1>Private Benchmark</h1>
-      <p>
-        This platform let&apos;s you benchmark the values of three participants{" "}
-        <strong>without disclosing their inputs</strong> to each other, nor to a
-        third party.
+    <div className="flex flex-col justify-between items-center gap-12 max-w-2xl">
+      <div>
+        <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
+        <h2>
+          by{" "}
+          <a
+            href="https://sine.foundation"
+            className="underline decoration-sine-purple decoration-4"
+          >
+            SINE Foundation
+          </a>
+        </h2>
+      </div>
+      <p className="max-w-xl leading-7">
+        With SINE Foundation&apos;s private benchmark, three participants can
+        benchmark a value <strong>without disclosing their inputs</strong> and{" "}
+        <strong>without needing a third party</strong>.
       </p>
-      <p>
+      <p className="max-w-xl leading-7">
         Sounds impossible? Not with <strong>Polytune</strong>, SINE
-        Foundation&apos;s Secure Multiparty Computation (MPC) engine.
-      </p>
-      <p>
-        SINE Foundation brings advanced cryptography to everyone. You can use it
-        in the browser, without any technical knowledge.
+        Foundation&apos;s Secure Multi-Party Computation (MPC) engine, which
+        brings advanced cryptography to everyone. You can use it in the browser,
+        without any technical knowledge.
       </p>
       <div className="border border-black rounded-3xl p-4 mt-6">
         <p className="text-xl font-bold mb-6">Give it a try!</p>
@@ -57,7 +66,7 @@ export default function Home() {
           action={startSession}
           className="flex flex-col gap-4 items-center"
         >
-          <p className="text-l max-w-2xl text-center leading-8">
+          <p className="text-l max-w-2xl text-center leading-7">
             For 3 participants, check whether their
             <input
               type="text"
@@ -76,7 +85,7 @@ export default function Home() {
               placeholder="kg"
               className={`w-14 ${inputClasses}`}
             />
-            are within a
+            are within
             <input
               type="number"
               id="intervalRange"
@@ -85,10 +94,12 @@ export default function Home() {
               placeholder="10"
               required
             />
-            % range of each other. <em>Privately</em>, using strong encryption
-            built by SINE Foundation.
+            % of each other. <em>Privately</em>, using strong encryption built
+            by SINE Foundation.
           </p>
-          <SubmitButton>Start</SubmitButton>
+          <div className="mt-2">
+            <SubmitButton>Start</SubmitButton>
+          </div>
         </form>
       </div>
     </div>

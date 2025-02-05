@@ -23,5 +23,10 @@ body {
 h1 {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
 }

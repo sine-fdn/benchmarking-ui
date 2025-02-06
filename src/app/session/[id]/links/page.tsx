@@ -14,7 +14,7 @@ export default async function Links({
   const link3 = `${baseUrl}/session/${id}/party3`;
 
   const linkClasses =
-    "border border-black rounded-3xl px-4 pt-2.5 pb-2 underline decoration-sine-purple decoration-4 font-mono text-sm w-fit";
+    "border border-black rounded-3xl px-4 pt-2.5 pb-2 underline decoration-sine-purple decoration-4 font-mono text-sm w-fit mb-4 xl:mb-0";
 
   const participantClasses =
     "bg-sine-purple border border-black rounded-3xl xl:pt-0.5 xl:w-1/3 xl:h-1/2 w-1/4";
@@ -33,7 +33,7 @@ export default async function Links({
   // TODO: Add a button to share the link via email
 
   return (
-    <div className="text-center flex flex-col justify-center items-center gap-12">
+    <div className="text-center flex flex-col justify-center items-center gap-16">
       <div>
         <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
         <h2>
@@ -46,7 +46,7 @@ export default async function Links({
           </a>
         </h2>
       </div>
-      <p className="max-w-xl leading-8 -mb-8">
+      <p className="max-w-xl leading-8 -mb-6">
         This private benchmark will check if the participants input for{" "}
         <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
           {value_name}

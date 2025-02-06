@@ -28,51 +28,90 @@ export default async function Result({
   );
   const below = result.filter((r: { result: Result }) => r.result === "below");
 
-  const bucketClasses =
-    "h-44 w-44 rounded-3xl border flex flex-col justify-between";
-  const aboveBucketClasses = `${bucketClasses} bg-sine-blue border-black`;
-  const withinBucketClasses = `${bucketClasses} bg-sine-yellow border-black`;
-  const belowBucketClasses = `${bucketClasses} bg-sine-red border-black`;
+  // const bucketClasses =
+  //   "h-44 w-44 rounded-3xl border flex flex-col justify-between";
+  // const aboveBucketClasses = `${bucketClasses} bg-sine-blue border-black`;
+  // const withinBucketClasses = `${bucketClasses} bg-sine-yellow border-black`;
+  // const belowBucketClasses = `${bucketClasses} bg-sine-red border-black`;
 
   return (
-    <div className="flex flex-col gap-4 justify-center">
-      <h1>Result</h1>
-      <div className={aboveBucketClasses}>
-        <h3>Above {interval_range}%</h3>
-        <div>
-          {above.map(
-            (r: { submitter: string; alias: string; result: Result }) => (
-              <p key={r.submitter}>{r.alias}</p>
-            )
-          )}
+    <div className="flex flex-col gap-14 justify-center">
+      <div className="mb-12">
+        <h1 className="-mb-2">Private Multi-Party Benchmark Result</h1>
+        <h2>
+          by{" "}
+          <a
+            href="https://sine.foundation"
+            className="underline decoration-sine-purple decoration-4"
+          >
+            SINE Foundation
+          </a>
+        </h2>
+      </div>
+      <div className="flex justify-between mx-16">
+        <div className="flex gap-2">
+          {above.map((party: { submitter: string; alias: string }) => {
+            return (
+              <p
+                key={party.submitter}
+                className="border rounded-xl border-black px-4"
+              >
+                {party.alias}
+              </p>
+            );
+          })}
+        </div>
+        <p className="text-right">
+          {"> "}
+          {interval_range}% above average
+        </p>
+      </div>
+      <div className="border-4 border-t-sine-yellow border-dashed border-b-sine-yellow border-x-0 h-32 flex items-center justify-between">
+        <div className="flex justify-between mx-16 w-full">
+          <div className="flex gap-2">
+            {within.map((party: { submitter: string; alias: string }) => {
+              return (
+                <p
+                  key={party.submitter}
+                  className="border rounded-xl border-black px-4 py-0"
+                >
+                  {party.alias}
+                </p>
+              );
+            })}
+          </div>
+          <p className="text-right">within {interval_range}% of average</p>
         </div>
       </div>
-      <div className={withinBucketClasses}>
-        <h3>Within Average</h3>
-        <div>
-          {within.map(
-            (r: { submitter: string; alias: string; result: Result }) => (
-              <p key={r.submitter}>{r.alias}</p>
-            )
-          )}
+      <div className="flex justify-between mx-16">
+        <div className="flex gap-2">
+          {below.map((party: { submitter: string; alias: string }) => {
+            return (
+              <p
+                key={party.submitter}
+                className="border rounded-xl border-black px-4"
+              >
+                {party.alias}
+              </p>
+            );
+          })}
         </div>
+        <p className="text-right">
+          {"< "}
+          {interval_range}% below average
+        </p>
       </div>
-      <div className={belowBucketClasses}>
-        <h3 className="text-purple-400">Below</h3>
-        <div>
-          {below.map(
-            (r: { submitter: string; alias: string; result: Result }) => (
-              <p key={r.submitter}>{r.alias}</p>
-            )
-          )}
-        </div>
+      <div className="flex justify-center mt-12 flex-col items-center gap-12">
+        <Link
+          href={"/"}
+          className="bg-sine-green border border-black rounded-3xl px-4 py-2"
+        >
+          Start new benchmark
+        </Link>
+        <Link href={"/about"} className="underline decoration-sine-purple decoration-4">
+          Learn more about <strong>Polytune</strong> and MPC
+        </Link>
       </div>
-      <Link
-        href={"/"}
-        className="border border-green-600 rounded px-2 py-1 bg-green-200 mt-6 hover:bg-green-600 hover:text-white"
-      >
-        Start new computation
-      </Link>
     </div>
   );
 }

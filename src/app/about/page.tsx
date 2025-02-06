@@ -1,14 +1,53 @@
+import Link from "next/link";
+
 export default function About() {
   return (
-    <>
-      <h2 className="text-xl font-bold mt-6 mb-2">Learn more about SMPC</h2>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/l25jcolQW6Q?si=HsuyLUada_OQFpXS"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-      />
-    </>
+    <div className="flex flex-col gap-6 items-center justify-center">
+      <div>
+        <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
+        <h2>
+          by{" "}
+          <a
+            href="https://sine.foundation"
+            className="underline decoration-sine-purple decoration-4"
+          >
+            SINE Foundation
+          </a>
+        </h2>
+      </div>
+      <h2 className="text-xl font-bold mb-2">About MPC</h2>
+      <p className="leading-8">
+        Here you can find an animation that explains how the protocol used in
+        the benchmark works:
+      </p>
+      <div className="max-w-2xl">
+        <video width="max" height="max" controls>
+          <source src="/mpc.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <a
+        href="https://www.youtube.com/watch?v=l25jcolQW6Q"
+        className="underline decoration-sine-purple decoration-4"
+        target="_blank"
+      >
+        Other resources
+      </a>
+      <p>
+        Do not hesitate to reach out if you want to learn more about{" "}
+        <strong>Polytune</strong> or have a use case you would like to discuss:{" "}
+        <a
+          href="mailto:vorstand@sine.foundation"
+          className="underline decoration-sine-purple decoration-4"
+        >
+          vortstand@sine.foundation
+        </a>
+      </p>
+      <Link
+        href={"/"}
+        className="bg-sine-green border border-black rounded-3xl px-4 py-2"
+      >
+        Start new benchmark
+      </Link>
+    </div>
   );
 }

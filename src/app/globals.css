@@ -1,11 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "tailwindcss";
+/* @tailwind utilities; */
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -14,9 +8,15 @@
   }
 }
 
+@theme {
+  --color-sine-green: #B7F2CE;
+  --color-sine-purple: #E9AEFF;
+  --color-sine-blue: #B4EDFF;
+  --color-sine-red: #FF8F9D;
+  --color-sine-yellow: #FFF493;
+}
+
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 

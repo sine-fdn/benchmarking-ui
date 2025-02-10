@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
+    "@tailwindcss/postcss": "^4.0.5",
     "nanoid": "^5.0.9",
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.5",
     "uuid": "^11.0.5",
     "vercel": "^39.3.0"
   },
@@ -24,8 +26,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
-    "postcss": "^8",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.1",
     "typescript": "^5"
   }
 }

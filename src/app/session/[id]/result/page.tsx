@@ -37,15 +37,9 @@ export default async function Result({
   return (
     <div className="flex flex-col gap-14 justify-center">
       <div className="mb-12">
-        <h1 className="-mb-2">Private Multi-Party Benchmark Result</h1>
+        <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
         <h2>
-          by{" "}
-          <a
-            href="https://sine.foundation"
-            className="underline decoration-sine-purple decoration-4"
-          >
-            SINE Foundation
-          </a>
+          by <a href="https://sine.foundation">SINE Foundation</a>
         </h2>
       </div>
       <div className="flex justify-between mx-16">
@@ -54,7 +48,7 @@ export default async function Result({
             return (
               <p
                 key={party.submitter}
-                className="border rounded-xl border-black px-4"
+                className="border rounded-xl border-black px-4 bg-sine-blue"
               >
                 {party.alias}
               </p>
@@ -66,14 +60,14 @@ export default async function Result({
           {interval_range}% above average
         </p>
       </div>
-      <div className="border-4 border-t-sine-yellow border-dashed border-b-sine-yellow border-x-0 h-32 flex items-center justify-between">
+      <div className="border-2 border-t-sine-black border-dashed border-b-sine-black border-x-0 h-32 flex items-center justify-between">
         <div className="flex justify-between mx-16 w-full">
           <div className="flex gap-2">
             {within.map((party: { submitter: string; alias: string }) => {
               return (
                 <p
                   key={party.submitter}
-                  className="border rounded-xl border-black px-4 py-0"
+                  className="border rounded-xl border-black px-4 py-0 bg-sine-blue"
                 >
                   {party.alias}
                 </p>
@@ -89,7 +83,7 @@ export default async function Result({
             return (
               <p
                 key={party.submitter}
-                className="border rounded-xl border-black px-4"
+                className="border rounded-xl border-black px-4 bg-sine-blue"
               >
                 {party.alias}
               </p>
@@ -108,7 +102,10 @@ export default async function Result({
         >
           Start new benchmark
         </Link>
-        <Link href={"/about"} className="underline decoration-sine-purple decoration-4">
+        <Link
+          href={"/about"}
+          className="underline decoration-sine-purple decoration-4"
+        >
           Learn more about <strong>Polytune</strong> and MPC
         </Link>
       </div>

@@ -16,13 +16,13 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-sine-green flex justify-center items-center h-screen w-screen p-2">
         <div className="flex flex-col items-center justify-center text-center bg-white rounded-2xl border border-black h-full w-full">
-          <header className="flex justify-end w-full absolute top-6 right-6">
+          {/* <header className="flex justify-end w-full absolute top-6 right-6">
             <span className="bg-sine-green px-8 border border-black rounded-xl">
               Polytune by SINE
             </span>
-          </header>
+          </header> */}
           <main className="overflow-scroll max-w-6xl">{children}</main>
-          <footer className="flex absolute bottom-6 left-6 w-full">
+          <footer className="flex absolute bottom-6">
             <a href="https://sine.foundation" target="_blank" rel="noreferrer">
               <Image
                 src="/sine-logo.svg"

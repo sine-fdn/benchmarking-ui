@@ -37,30 +37,16 @@ export default async function Links({
       <div>
         <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
         <h2>
-          by{" "}
-          <a
-            href="https://sine.foundation"
-            className="underline decoration-sine-purple decoration-4"
-          >
-            SINE Foundation
-          </a>
+          by <a href="https://sine.foundation">SINE Foundation</a>
         </h2>
       </div>
       <p className="max-w-xl leading-8 -mb-6">
         This private benchmark will check if the participants input for{" "}
-        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
-          {value_name}
-        </span>{" "}
-        in{" "}
-        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
-          {description}
-        </span>{" "}
-        are within{" "}
-        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
-          {interval_range}
-        </span>
-        % of the average. Now you can share the following links with
-        participants of your choice:
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">{value_name}</span> in{" "}
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">{description}</span> are within{" "}
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">{interval_range}%</span>{" "}
+        of the average. Now you can share the following links with participants
+        of your choice:
       </p>
       <div className="grid xl:grid-flow-col xl:grid-rows-3 xl:grid-cols-3 gap-x-3 grid-flow-row mx-4">
         <div className="flex justify-center items-end">

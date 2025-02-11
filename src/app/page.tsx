@@ -33,7 +33,7 @@ export default function Home() {
   }
 
   const inputClasses =
-    "border-4 border-sine-purple rounded-xl px-2 text-right mx-1.5";
+    "border-4 border-sine-green rounded-xl px-2 text-right mx-1.5";
 
   return (
     <div className="flex flex-col justify-between items-center gap-12 max-w-2xl">
@@ -41,26 +41,25 @@ export default function Home() {
         <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
         <h2>
           by{" "}
-          <a
+          {/* <a
             href="https://sine.foundation"
             className="underline decoration-sine-purple decoration-4"
-          >
-            SINE Foundation
-          </a>
+          > */}
+          SINE Foundation
+          {/* </a> */}
         </h2>
       </div>
       <p className="max-w-xl leading-7">
-        With SINE Foundation&apos;s private benchmark, three participants can
-        benchmark a value <strong>without disclosing their inputs</strong> and{" "}
-        <strong>without needing a third party</strong>.
+        With SINE&apos;s private benchmark, three participants can benchmark a
+        value <strong>without disclosing their inputs</strong> and{" "}
+        <strong>without sharing any data with SINE</strong>.
       </p>
       <p className="max-w-xl leading-7">
-        Sounds impossible? Not with <strong>Polytune</strong>, SINE
-        Foundation&apos;s Secure Multi-Party Computation (MPC) engine, which
-        brings advanced cryptography to everyone. You can use it in the browser,
-        without any technical knowledge.
+        <strong>Polytune</strong>, SINE&apos;s Secure Multi-Party Computation
+        (MPC) engine, brings advanced cryptography to everyone. You can use it
+        in the browser, without any technical knowledge.
       </p>
-      <div className="border border-black rounded-3xl p-4 mt-6">
+      <div className="border border-black rounded-3xl p-4 w-2xl">
         <p className="text-xl font-bold mb-6">Give it a try!</p>
         <form
           action={startSession}
@@ -102,6 +101,13 @@ export default function Home() {
           </div>
         </form>
       </div>
+
+      <a
+        href="/about"
+        className="underline decoration-sine-purple decoration-4 mb-24"
+      >
+        About this Benchmark
+      </a>
     </div>
   );
 }

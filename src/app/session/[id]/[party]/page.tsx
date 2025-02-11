@@ -39,21 +39,12 @@ export default async function Party({
     redirect(`/session/${session_id}/${party}/waiting`);
   }
 
-  const inputClasses =
-    "border-4 border-sine-purple rounded-xl px-2 text-right mx-1.5";
-
   return (
-    <div className="flex flex-col justify-center items-center gap-12">
+    <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
       <div>
         <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
         <h2>
-          by{" "}
-          <a
-            href="https://sine.foundation"
-            className="underline decoration-sine-purple decoration-4"
-          >
-            SINE Foundation
-          </a>
+          by <a href="https://sine.foundation">SINE Foundation</a>
         </h2>
       </div>
       <p className="leading-8 max-w-xl">
@@ -63,47 +54,62 @@ export default async function Party({
       </p>
       <p className="leading-8 max-w-xl">
         The benchmark will determine whether your value of{" "}
-        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">
           {value_name}
         </span>{" "}
         in{" "}
-        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">
           {description}
         </span>{" "}
         is within{" "}
-        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
-          {interval_range}
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">
+          {interval_range}%
         </span>{" "}
-        % of the average of all participants.{" "}
+        of the average of all participants.{" "}
         <strong>Your input will remain private!</strong> Sounds impossible?
       </p>
-      <div className="border border-black rounded-3xl p-4">
+      <div className="border border-black rounded-3xl p-4 py-6 w-2xl">
         <p className="text-xl font-bold">Give it a try!</p>
         <form action={handleSubmission}>
-          <p className="mt-6 leading-8 mb-8">
-            Your public name is{" "}
-            <input
-              type="text"
-              id="alias"
-              name="alias"
-              className={inputClasses}
-              required
-            />{" "}
-            and your <em>private</em> input is{" "}
-            <input
-              type="number"
-              id="value"
-              name="value"
-              className={`${inputClasses} w-32`}
-              placeholder={`${value_name} in ${description}`}
-              required
-            />
-            .
-          </p>
+          <div className="leading-8 my-10">
+            <div className="mb-10">
+              <p>
+                Your Name:{" "}
+                <input
+                  type="text"
+                  id="alias"
+                  name="alias"
+                  className="border-4 border-sine-green rounded-xl px-2 text-left mx-1.5"
+                  required
+                />{" "}
+              </p>
+              <p>
+                Your name is used to identify you and will be visible to the
+                other participants.{" "}
+              </p>
+            </div>
+            <div>
+              <p>
+                Your Input:{" "}
+                <input
+                  type="number"
+                  id="value"
+                  name="value"
+                  className="border-4 rounded-xl px-2 text-left mx-1.5 border-sine-blue"
+                  placeholder={`${value_name} in ${description}`}
+                  required
+                />
+              </p>
+              <p>
+                Your input is never revealed to the other participants and will
+                remain encrypted.{" "}
+              </p>
+            </div>
+          </div>
           <SubmitButton>Submit</SubmitButton>
         </form>
       </div>
-      <p className="text-center mt-4 bg-sine-red rounded-3xl px-4 py-2 border border-black">
+      <p className="text-center mt-4 bg-sine-red rounded-3xl px-4 py-2 border border-black mb-24">
         Please remain online until the result is shown!
       </p>
     </div>

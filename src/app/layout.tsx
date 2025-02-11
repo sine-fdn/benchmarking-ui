@@ -14,13 +14,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <div className="flex flex-col items-center h-screen pt-20 text-center">
-          <main>
-            <h1>Polytune</h1>
-            {children}
-          </main>
-          <footer className="flex justify-center p-4 absolute bottom-0 w-full">
+      <body className="bg-sine-green flex justify-center items-center h-screen w-screen p-2">
+        <div className="flex flex-col items-center justify-center text-center bg-white rounded-2xl border border-black h-full w-full">
+          <header className="flex justify-end w-full absolute top-6 right-6">
+            <span className="bg-sine-green px-8 border border-black rounded-xl">
+              Polytune by SINE
+            </span>
+          </header>
+          <main className="overflow-scroll max-w-6xl">{children}</main>
+          <footer className="flex absolute bottom-6 left-6 w-full">
             <a href="https://sine.foundation" target="_blank" rel="noreferrer">
               <Image
                 src="/sine-logo.svg"

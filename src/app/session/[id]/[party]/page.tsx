@@ -21,7 +21,8 @@ export default async function Party({
     return session[0];
   }
 
-  const session = await getSession();
+  const { session_id, value_name, interval_range, description } =
+    await getSession();
 
   async function handleSubmission(formData: FormData) {
     "use server";
@@ -29,8 +30,6 @@ export default async function Party({
     const { party } = await params;
     const alias = formData.get("alias") as string;
     const value = formData.get("value") as string;
-
-    const session_id = session.session_id;
 
     await sql`
       INSERT INTO submissions (session_id, submitter, alias, submission)
@@ -40,43 +39,72 @@ export default async function Party({
     redirect(`/session/${session_id}/${party}/waiting`);
   }
 
-  const inputClasses = "border border-green-600 rounded";
+  const inputClasses =
+    "border-4 border-sine-purple rounded-xl px-2 text-right mx-1.5";
 
   return (
-    <div className="text-center flex flex-col justify-center items-center">
-      <h1>Polytune</h1>
-      <div className="text-justify w-1/2 mt-6">
-        <p className="mb-8">
-          Welcome to Polytune, SINE&apos;s Secure Multiparty Computation engine.
-          Polytune allows three parties to engage in a computation without
-          revealing their individual inputs. In this case, Polytune will compute
-          the average of {session.value_name} and for each participant determine
-          whether the difference between the average and their input is within a{" "}
-          {session.interval_range} range.
-        </p>
-        <p className="text-center mb-6">
-          <strong>Please remain online during the entire computation</strong>
-        </p>
+    <div className="flex flex-col justify-center items-center gap-12">
+      <div>
+        <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
+        <h2>
+          by{" "}
+          <a
+            href="https://sine.foundation"
+            className="underline decoration-sine-purple decoration-4"
+          >
+            SINE Foundation
+          </a>
+        </h2>
       </div>
-      <form
-        action={handleSubmission}
-        className="flex flex-col gap-2 justify-center mx-auto mt-6 text-justify"
-      >
-        <label htmlFor="alias" className="">
-          Please enter an alias for yourself (e.g. Alice, ACME, Bob etc.):
-          <p className="text-xs">Other participants can see your alias</p>
-        </label>
-        <input type="text" id="alias" name="alias" className={inputClasses} />
-
-        <label htmlFor="value" className="mt-2">
-          Please enter your value for {session.value_name}:
-          <p className="text-xs">Your input will remain private</p>
-        </label>
-        <input type="number" id="value" name="value" className={inputClasses} />
-        <SubmitButton>Submit</SubmitButton>
-      </form>
-      <p className="text-justify mt-8">
-        More about {session.value_name}: {session.description}
+      <p className="leading-8 max-w-xl">
+        You&apos;ve been invited to join a private benchmark, powered by SINE
+        Foundation&apos;s Secure Multi-Party Computation (MPC) engine,{" "}
+        <strong>Polytune</strong>.
+      </p>
+      <p className="leading-8 max-w-xl">
+        The benchmark will determine whether your value of{" "}
+        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
+          {value_name}
+        </span>{" "}
+        in{" "}
+        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
+          {description}
+        </span>{" "}
+        is within{" "}
+        <span className="border-4 rounded-xl border-sine-green px-2 py-1.5">
+          {interval_range}
+        </span>{" "}
+        % of the average of all participants.{" "}
+        <strong>Your input will remain private!</strong> Sounds impossible?
+      </p>
+      <div className="border border-black rounded-3xl p-4">
+        <p className="text-xl font-bold">Give it a try!</p>
+        <form action={handleSubmission}>
+          <p className="mt-6 leading-8 mb-8">
+            Your public name is{" "}
+            <input
+              type="text"
+              id="alias"
+              name="alias"
+              className={inputClasses}
+              required
+            />{" "}
+            and your <em>private</em> input is{" "}
+            <input
+              type="number"
+              id="value"
+              name="value"
+              className={`${inputClasses} w-32`}
+              placeholder={`${value_name} in ${description}`}
+              required
+            />
+            .
+          </p>
+          <SubmitButton>Submit</SubmitButton>
+        </form>
+      </div>
+      <p className="text-center mt-4 bg-sine-red rounded-3xl px-4 py-2 border border-black">
+        Please remain online until the result is shown!
       </p>
     </div>
   );

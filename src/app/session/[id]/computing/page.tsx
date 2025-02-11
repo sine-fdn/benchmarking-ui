@@ -56,13 +56,13 @@ async function ComputingServer({
 
   if (!result) {
     return (
-      <div className="mt-6 text-xl">
-        <p>Computing...</p>
-        <p>
-          Please do not close this tab. All participants need to stay online
-          during the computation
+      <>
+        <p className="text-center bg-sine-green rounded-3xl px-4 py-2 border border-black mx-12">
+          That&apos;s it! Encrypted messages will now be transmitted in the
+          background. Please don&apos;t close this tab until the result is
+          displayed.{" "}
         </p>
-      </div>
+      </>
     );
   } else {
     redirect(`/session/${id}/result`);

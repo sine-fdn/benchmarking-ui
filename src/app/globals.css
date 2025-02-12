@@ -14,6 +14,19 @@
   --color-sine-blue: #B4EDFF;
   --color-sine-red: #FF8F9D;
   --color-sine-yellow: #FFF493;
+
+  --animate-blink: blink 2s infinite both;
+
+  @keyframes blink {
+
+    0% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+  }
+
 }
 
 body {

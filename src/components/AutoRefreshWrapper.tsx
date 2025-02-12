@@ -11,7 +11,7 @@ export function AutoRefreshWrapper({
   React.useEffect(() => {
     const interval = setInterval(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);

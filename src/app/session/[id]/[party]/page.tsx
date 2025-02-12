@@ -109,9 +109,6 @@ export default async function Party({
           <SubmitButton>Submit</SubmitButton>
         </form>
       </div>
-      <p className="text-center mt-4 bg-sine-red rounded-3xl px-4 py-2 border border-black mb-24">
-        Please remain online until the result is shown!
-      </p>
     </div>
   );
 }

@@ -19,9 +19,14 @@ async function WaitingServer({
   } else {
     return (
       <div>
-        <p>Waiting for the other participants to submit their value...</p>
+        <p>
+          Waiting for the other participants to submit their value
+          <span className="animate-blink [animation-delay:0.5s]">.</span>
+          <span className="animate-blink [animation-delay:1s]">.</span>
+          <span className="animate-blink [animation-delay:1.5s]">.</span>
+        </p>
         <p className="text-center mt-12 bg-sine-red rounded-3xl px-4 py-2 border border-black">
-        Please do not close this tab until the result is shown!
+          Please do not close this tab until the result is shown!
         </p>
       </div>
     );

@@ -9,6 +9,7 @@
 }
 
 @theme {
+  --default-font-family: Favorit, Arial, sans-serif;
   --color-sine-green: #B7F2CE;
   --color-sine-purple: #E9AEFF;
   --color-sine-blue: #B4EDFF;
@@ -29,10 +30,6 @@
   }
 
 
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {

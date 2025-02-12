@@ -39,7 +39,7 @@ export default function About() {
           href="mailto:vorstand@sine.foundation"
           className="underline decoration-sine-purple decoration-4"
         >
-          vortstand@sine.foundation
+          vorstand@sine.foundation
         </a>
       </p>
       <Link

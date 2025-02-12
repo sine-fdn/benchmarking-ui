@@ -30,7 +30,7 @@ async function WaitingServer({
           <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.9s]"></div>
         </div>
         <div className="max-w-2xl">
-          <video width="max" height="max" controls autoPlay={true} loop={true}>
+          <video width="max" height="max" autoPlay loop>
             <source src="/mpc.mp4" type="video/mp4" />
           </video>
         </div>

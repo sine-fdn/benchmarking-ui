@@ -28,11 +28,18 @@ export default async function Result({
   );
   const below = result.filter((r: { result: Result }) => r.result === "below");
 
-  // const bucketClasses =
-  //   "h-44 w-44 rounded-3xl border flex flex-col justify-between";
-  // const aboveBucketClasses = `${bucketClasses} bg-sine-blue border-black`;
-  // const withinBucketClasses = `${bucketClasses} bg-sine-yellow border-black`;
-  // const belowBucketClasses = `${bucketClasses} bg-sine-red border-black`;
+  function placeParticipants(group: []) {
+    return group.map((party: { submitter: string; alias: string }) => {
+      return (
+        <p
+          key={party.submitter}
+          className="border rounded-xl border-black px-4 bg-sine-blue"
+        >
+          {party.alias}
+        </p>
+      );
+    });
+  }
 
   return (
     <div className="flex flex-col gap-14 justify-center">
@@ -42,54 +49,45 @@ export default async function Result({
           by <a href="https://sine.foundation">SINE Foundation</a>
         </h2>
       </div>
-      <div className="flex justify-between mx-16">
-        <div className="flex gap-2">
-          {above.map((party: { submitter: string; alias: string }) => {
-            return (
-              <p
-                key={party.submitter}
-                className="border rounded-xl border-black px-4 bg-sine-blue"
-              >
-                {party.alias}
-              </p>
-            );
-          })}
-        </div>
+      <div className="flex justify-between mx-16 gap-2">
+        <div className="flex gap-2">{placeParticipants(above)}</div>
         <p className="text-right">
           {"> "}
           {interval_range}% above average
         </p>
       </div>
-      <div className="border-2 border-t-sine-black border-dashed border-b-sine-black border-x-0 h-32 flex items-center justify-between">
-        <div className="flex justify-between mx-16 w-full">
-          <div className="flex gap-2">
-            {within.map((party: { submitter: string; alias: string }) => {
-              return (
-                <p
-                  key={party.submitter}
-                  className="border rounded-xl border-black px-4 py-0 bg-sine-blue"
-                >
-                  {party.alias}
-                </p>
-              );
-            })}
+      <div>
+        <svg className="w-full h-1" viewBox="0 0 800 5">
+          <line
+            x1="0"
+            y1="2"
+            x2="800"
+            y2="2"
+            stroke="black"
+            strokeWidth="2"
+            strokeDasharray="10, 10"
+          />
+        </svg>
+        <div className="h-32 flex items-center justify-between">
+          <div className="flex justify-between gap-2 mx-16 w-full">
+            <div className="flex gap-2">{placeParticipants(within)}</div>
+            <p className="text-right">within {interval_range}% of average</p>
           </div>
-          <p className="text-right">within {interval_range}% of average</p>
         </div>
+        <svg className="w-full h-1" viewBox="0 0 800 5">
+          <line
+            x1="0"
+            y1="2"
+            x2="800"
+            y2="2"
+            stroke="black"
+            strokeWidth="2"
+            strokeDasharray="10, 10"
+          />
+        </svg>
       </div>
-      <div className="flex justify-between mx-16">
-        <div className="flex gap-2">
-          {below.map((party: { submitter: string; alias: string }) => {
-            return (
-              <p
-                key={party.submitter}
-                className="border rounded-xl border-black px-4 bg-sine-blue"
-              >
-                {party.alias}
-              </p>
-            );
-          })}
-        </div>
+      <div className="flex justify-between mx-16 gap-2">
+        <div className="flex gap-2">{placeParticipants(below)}</div>
         <p className="text-right">
           {"< "}
           {interval_range}% below average

@@ -27,7 +27,7 @@ export default async function Links({
     SELECT * FROM sessions WHERE session_id = ${id}
   `;
 
-  const { value_name, interval_range, description } = session[0];
+  const { value_name, interval_range, unit } = session[0];
 
   // TODO: Add a button to copy the link to the clipboard
   // TODO: Add a button to share the link via email
@@ -43,7 +43,7 @@ export default async function Links({
       <p className="max-w-xl leading-8 -mb-6">
         This private benchmark will check if the participants input for{" "}
         <span className="font-mono bg-sine-green px-2 py-1 rounded">{value_name}</span> in{" "}
-        <span className="font-mono bg-sine-green px-2 py-1 rounded">{description}</span> are within{" "}
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">{unit}</span> are within{" "}
         <span className="font-mono bg-sine-green px-2 py-1 rounded">{interval_range}%</span>{" "}
         of the average. Now you can share the following links with participants
         of your choice:

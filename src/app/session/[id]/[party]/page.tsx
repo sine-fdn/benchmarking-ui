@@ -21,7 +21,7 @@ export default async function Party({
     return session[0];
   }
 
-  const { session_id, value_name, interval_range, description } =
+  const { session_id, value_name, interval_range, unit } =
     await getSession();
 
   async function handleSubmission(formData: FormData) {
@@ -59,7 +59,7 @@ export default async function Party({
         </span>{" "}
         in{" "}
         <span className="font-mono bg-sine-green px-2 py-1 rounded">
-          {description}
+          {unit}
         </span>{" "}
         is within{" "}
         <span className="font-mono bg-sine-green px-2 py-1 rounded">
@@ -96,7 +96,7 @@ export default async function Party({
                   id="value"
                   name="value"
                   className="border-4 rounded-xl px-2 text-left mx-1.5 border-sine-blue"
-                  placeholder={`${value_name} in ${description}`}
+                  placeholder={`${value_name} in ${unit}`}
                   required
                 />
               </p>

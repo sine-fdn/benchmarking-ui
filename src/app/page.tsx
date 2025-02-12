@@ -20,12 +20,12 @@ export default function Home() {
 
     const id = session.sessionID;
     const valueName = formData.get("value_name") as string;
-    const description = formData.get("description") as string;
+    const unit = formData.get("unit") as string;
     const intervalRange = formData.get("interval_range") as string;
 
     await sql`
       UPDATE sessions
-      SET value_name = ${valueName}, description = ${description}, interval_range = ${intervalRange}
+      SET value_name = ${valueName}, unit = ${unit}, interval_range = ${intervalRange}
       WHERE session_id = ${id}
     `;
 
@@ -70,8 +70,8 @@ export default function Home() {
             in
             <input
               type="text"
-              id="description" // TODO: change to UNIT
-              name="description" // TODO: Change to UNIT
+              id="unit"
+              name="unit"
               required
               placeholder="kg"
               className={`w-14 ${inputClasses}`}
@@ -79,6 +79,7 @@ export default function Home() {
             are within
             <input
               type="number"
+              min="0"
               id="intervalRange"
               name="interval_range"
               className={`w-16 ${inputClasses}`}

@@ -39,15 +39,7 @@ export default function Home() {
     <div className="flex flex-col justify-between items-center gap-12 max-w-2xl">
       <div>
         <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
-        <h2>
-          by{" "}
-          {/* <a
-            href="https://sine.foundation"
-            className="underline decoration-sine-purple decoration-4"
-          > */}
-          SINE Foundation
-          {/* </a> */}
-        </h2>
+        <h2>SINE Foundation</h2>
       </div>
       <p className="max-w-xl leading-7">
         With SINE&apos;s private benchmark, three participants can benchmark a

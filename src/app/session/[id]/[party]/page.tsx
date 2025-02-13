@@ -21,8 +21,7 @@ export default async function Party({
     return session[0];
   }
 
-  const { session_id, value_name, interval_range, unit } =
-    await getSession();
+  const { session_id, value_name, interval_range, unit } = await getSession();
 
   async function handleSubmission(formData: FormData) {
     "use server";
@@ -30,6 +29,17 @@ export default async function Party({
     const { party } = await params;
     const alias = formData.get("alias") as string;
     const value = formData.get("value") as string;
+
+    const submission = await sql`
+      SELECT submissions FROM submissions WHERE session_id = ${session_id} AND submitter = ${party}
+    `;
+
+    if (submission.length != 0) {
+      console.log(
+        `Submission for party ${party} already exists, redirecting to waiting page`
+      );
+      redirect(`/session/${session_id}/${party}/waiting`);
+    }
 
     await sql`
       INSERT INTO submissions (session_id, submitter, alias, submission)

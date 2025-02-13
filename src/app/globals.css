@@ -18,22 +18,6 @@
   --font-weight-bold: 500;
 }
 
-@font-face {
-  font-family: "Favorit";
-  src: url("/fonts/Favorit-Light.woff2") format("woff2"),
-    url("/fonts/Favorit-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Favorit";
-  src: url("/fonts/Favorit-Medium.woff2") format("woff2"),
-    url("/fonts/Favorit-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
 body {
   font-weight: 300;
 }

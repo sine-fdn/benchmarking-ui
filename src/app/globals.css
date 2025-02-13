@@ -15,26 +15,32 @@
   --color-sine-blue: #B4EDFF;
   --color-sine-red: #FF8F9D;
   --color-sine-yellow: #FFF493;
+  --font-weight-bold: 500;
+}
 
-  --animate-blink: blink 2s infinite both;
+@font-face {
+  font-family: "Favorit";
+  src: url("/fonts/Favorit-Light.woff2") format("woff2"),
+    url("/fonts/Favorit-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
 
-  @keyframes blink {
+@font-face {
+  font-family: "Favorit";
+  src: url("/fonts/Favorit-Medium.woff2") format("woff2"),
+    url("/fonts/Favorit-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
 
-    0% {
-      opacity: 0;
-    }
-
-    20% {
-      opacity: 1;
-    }
-  }
-
-
+body {
+  font-weight: 300;
 }
 
 h1 {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 h2 {

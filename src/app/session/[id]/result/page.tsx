@@ -49,7 +49,7 @@ export default async function Result({
           by <a href="https://sine.foundation">SINE Foundation</a>
         </h2>
       </div>
-      <div className="flex justify-between mx-16 gap-2">
+      <div className="flex justify-between px-20 gap-2 w-full">
         <div className="flex gap-2">{placeParticipants(above)}</div>
         <p className="text-right">
           {"> "}
@@ -86,7 +86,7 @@ export default async function Result({
           />
         </svg>
       </div>
-      <div className="flex justify-between mx-16 gap-2">
+      <div className="flex justify-between px-20 gap-2 w-full">
         <div className="flex gap-2">{placeParticipants(below)}</div>
         <p className="text-right">
           {"< "}

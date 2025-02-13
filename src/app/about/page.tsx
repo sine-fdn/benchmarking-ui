@@ -2,26 +2,18 @@ import Link from "next/link";
 
 export default function About() {
   return (
-    <div className="flex flex-col gap-6 items-center justify-center">
+    <div className="flex flex-col gap-4 items-center justify-center">
       <div>
         <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
-        <h2>
-          by{" "}
-          <a
-            href="https://sine.foundation"
-            className="underline decoration-sine-purple decoration-4"
-          >
-            SINE Foundation
-          </a>
-        </h2>
+        <h2>by SINE Foundation</h2>
       </div>
-      <h2 className="text-xl font-bold mb-2">About MPC</h2>
+      <h2 className="text-xl font-bold">About MPC</h2>
       <p className="leading-8">
         Here you can find an animation that explains how the protocol used in
         the benchmark works:
       </p>
       <div className="max-w-2xl">
-        <video width="max" height="max" controls>
+        <video width="max" height="max" autoPlay loop>
           <source src="/mpc.mp4" type="video/mp4" />
         </video>
       </div>

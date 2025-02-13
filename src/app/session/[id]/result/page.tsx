@@ -42,7 +42,7 @@ export default async function Result({
   }
 
   return (
-    <div className="flex flex-col gap-14 justify-center">
+    <div className="flex flex-col gap-12 justify-center mt-96 items-center">
       <div className="mb-12">
         <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
         <h2>
@@ -106,6 +106,15 @@ export default async function Result({
         >
           Learn more about <strong>Polytune</strong> and MPC
         </Link>
+        <div className="-mt-6">
+          <p className="animate-bounce -mb-4 ">∨</p>
+          <p className="animate-bounce">∨</p>
+        </div>
+      </div>
+      <div className="max-w-2xl">
+        <video width="max" height="max" autoPlay loop>
+          <source src="/mpc.mp4" type="video/mp4" />
+        </video>
       </div>
     </div>
   );

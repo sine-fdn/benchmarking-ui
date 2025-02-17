@@ -41,12 +41,19 @@ export default async function Links({
         </h2>
       </div>
       <p className="max-w-xl leading-8 -mb-6">
-        This private benchmark will check if the participants input for{" "}
-        <span className="font-mono bg-sine-green px-2 py-1 rounded">{value_name}</span> in{" "}
-        <span className="font-mono bg-sine-green px-2 py-1 rounded">{unit}</span> are within{" "}
-        <span className="font-mono bg-sine-green px-2 py-1 rounded">{interval_range}%</span>{" "}
-        of the average. Now you can share the following links with participants
-        of your choice:
+        Now you can share the following links with participants of your choice,
+        checking that their inputs for{" "}
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">
+          {value_name}
+        </span>{" "}
+        in{" "}
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">
+          {unit}
+        </span>{" "}
+        are within{" "}
+        <span className="font-mono bg-sine-green px-2 py-1 rounded">
+          {interval_range}%
+        </span>{" "}
       </p>
       <div className="grid xl:grid-flow-col xl:grid-rows-3 xl:grid-cols-3 gap-x-3 grid-flow-row mx-4">
         <div className="flex justify-center items-end">

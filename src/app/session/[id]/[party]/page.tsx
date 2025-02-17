@@ -76,7 +76,7 @@ export default async function Party({
           {interval_range}%
         </span>{" "}
         of the average of all participants.{" "}
-        <strong>Your input will remain private!</strong> Sounds impossible?
+        <strong>Your input will remain private and ecnrypted</strong>.
       </p>
       <div className="border border-black rounded-3xl p-4 py-6 w-2xl">
         <p className="text-xl font-bold">Give it a try!</p>

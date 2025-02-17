@@ -17,10 +17,10 @@ export default async function Links({
     "border border-black rounded-3xl px-4 pt-2.5 pb-2 underline decoration-sine-purple decoration-4 font-mono text-sm w-fit mb-4 xl:mb-0";
 
   const participantClasses =
-    "bg-sine-purple border border-black rounded-3xl xl:pt-1 xl:w-1/3 xl:h-1/2 w-1/4";
+    "bg-sine-purple border border-black rounded-3xl xl:pt-1.5 xl:w-1/3 xl:h-1/2 w-1/4";
 
   const connectionLineClasses =
-    "flex justify-center bg-black w-[1.5px] mx-auto h-6 xl:h-16";
+    "flex justify-center bg-black w-[1.5px] mx-auto h-6 xl:h-20";
 
   // TODO: Show actual values from previous screen (making it obvious that it's interactive)
   const session = await sql`

@@ -3,6 +3,9 @@ import { redirect } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 import { sql } from "@/lib/db";
 import { SubmitButton } from "@/components/SubmitButton";
+import TextBlock from "@/components/TextBlock";
+import Box from "@/components/Box";
+import Input from "@/components/Input";
 
 export default function Home() {
   async function startSession(formData: FormData) {
@@ -32,26 +35,19 @@ export default function Home() {
     redirect(`/session/${id}/links`);
   }
 
-  const inputClasses =
-    "border-4 border-sine-green rounded-xl px-2 text-right mx-1.5";
-
   return (
     <div className="flex flex-col justify-between items-center gap-12 max-w-2xl">
-      <div>
-        <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
-        <h2>SINE Foundation</h2>
-      </div>
-      <p className="max-w-xl leading-7">
+      <TextBlock>
         With SINE&apos;s private benchmark, three participants can benchmark a
         value <strong>without disclosing their inputs</strong> and{" "}
         <strong>without sharing any data with SINE</strong>.
-      </p>
-      <p className="max-w-xl leading-7">
+      </TextBlock>
+      <TextBlock>
         <strong>Polytune</strong>, SINE&apos;s Secure Multi-Party Computation
         (MPC) engine, brings advanced cryptography to everyone. You can use it
         in the browser, without any technical knowledge.
-      </p>
-      <div className="border border-black rounded-3xl p-4 w-2xl">
+      </TextBlock>
+      <Box>
         <p className="text-xl font-bold mb-6">Give it a try!</p>
         <form
           action={startSession}
@@ -59,45 +55,43 @@ export default function Home() {
         >
           <p className="text-l max-w-2xl text-center leading-7">
             For 3 participants, check whether their
-            <input
+            <Input
               type="text"
               id="valueName"
               name="value_name"
-              className={`w-36 ${inputClasses}`}
-              placeholder="CO2e emissions"
+              placeholder={"CO2e emissions"}
               required
+              className="w-36 text-right"
             />
             in
-            <input
+            <Input
               type="text"
               id="unit"
               name="unit"
               required
               placeholder="kg"
-              className={`w-14 ${inputClasses}`}
+              className="w-14 text-right"
             />
             are within
-            <input
+            <Input
               type="number"
               min="0"
               id="intervalRange"
               name="interval_range"
-              className={`w-16 ${inputClasses}`}
+              className="w-16 text-right"
               placeholder="10"
               required
             />
             % of each other. <em>Privately</em>, using strong encryption built
             by SINE Foundation.
           </p>
-          <div className="mt-2">
-            <SubmitButton>Start</SubmitButton>
-          </div>
+          <SubmitButton className="mt-2">Start</SubmitButton>
         </form>
-      </div>
+      </Box>
 
       <a
         href="/about"
-        className="underline decoration-sine-purple decoration-4 mb-24"
+        className="underline decoration-sine-purple decoration-4"
       >
         About this Benchmark
       </a>

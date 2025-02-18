@@ -33,7 +33,7 @@ export default async function Result({
       return (
         <p
           key={party.submitter}
-          className="border rounded-xl border-black px-4 bg-sine-blue"
+          className="border rounded-xl border-black px-4 bg-sine-blue h-fit"
         >
           {party.alias}
         </p>
@@ -43,70 +43,66 @@ export default async function Result({
 
   return (
     <div className="flex flex-col gap-12 justify-center items-center">
-      <div className="mb-12">
-        <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
-        <h2>
-          by <a href="https://sine.foundation">SINE Foundation</a>
-        </h2>
-      </div>
-      <div className="flex justify-between px-20 gap-2 w-full">
-        <div className="flex gap-2">{placeParticipants(above)}</div>
+      <div className="flex justify-between px-4 md:px-20 gap-2 w-full">
+        <div className="grid lg:flex gap-2 items-center">
+          {placeParticipants(above)}
+        </div>
         <p className="text-right">
           {"> "}
           {interval_range}% above average
         </p>
       </div>
-      <div>
-        <svg className="w-full h-1" viewBox="0 0 800 5">
-          <line
-            x1="0"
-            y1="2"
-            x2="800"
-            y2="2"
-            stroke="black"
-            strokeWidth="2"
-            strokeDasharray="10, 10"
-          />
-        </svg>
+      <div className="w-xs md:w-xl">
+        <DividingLine />
         <div className="h-32 flex items-center justify-between">
-          <div className="flex justify-between gap-2 mx-16 w-full">
-            <div className="flex gap-2">{placeParticipants(within)}</div>
+          <div className="flex justify-between gap-2 px-4 md:px-20 w-full">
+            <div className="grid lg:flex gap-2 items-center">
+              {placeParticipants(within)}
+            </div>
             <p className="text-right">within {interval_range}% of average</p>
           </div>
         </div>
-        <svg className="w-full h-1" viewBox="0 0 800 5">
-          <line
-            x1="0"
-            y1="2"
-            x2="800"
-            y2="2"
-            stroke="black"
-            strokeWidth="2"
-            strokeDasharray="10, 10"
-          />
-        </svg>
+        <DividingLine />
       </div>
-      <div className="flex justify-between px-20 gap-2 w-full">
-        <div className="flex gap-2">{placeParticipants(below)}</div>
+      <div className="flex justify-between px-4 md:px-20 gap-2 w-full">
+        <div className="grid lg:flex gap-2 items-center">
+          {placeParticipants(below)}
+        </div>
         <p className="text-right">
           {"< "}
           {interval_range}% below average
         </p>
       </div>
-      <div className="flex justify-center mt-12 flex-col items-center gap-12">
-        <Link
-          href={"/"}
-          className="bg-sine-green border border-black rounded-3xl px-4 py-2"
-        >
-          Start new benchmark
-        </Link>
+      <div className="flex justify-center mt-6 flex-col items-center gap-12">
         <Link
           href={"/about"}
           className="underline decoration-sine-purple decoration-4"
         >
           Learn more about <strong>Polytune</strong> and MPC
         </Link>
+        <Link
+          href={"/"}
+          className="bg-sine-green border border-black rounded-3xl px-4 py-2"
+        >
+          Start new benchmark
+        </Link>
       </div>
     </div>
+  );
+}
+
+function DividingLine() {
+  return (
+    <svg className="w-full h-1" viewBox="0 0 800 5">
+      <line
+        x1="0"
+        y1="2"
+        x2="800"
+        y2="2"
+        stroke="black"
+        strokeWidth="2"
+        strokeDasharray="10, 10"
+      />
+    </svg>
   );
 }

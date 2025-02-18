@@ -1,4 +1,6 @@
 import { AutoRefreshWrapper } from "@/components/AutoRefreshWrapper";
+import TextBlock from "@/components/TextBlock";
+import Warning from "@/components/Warning";
 import { sql } from "@/lib/db";
 import Link from "next/link";
 
@@ -16,13 +18,9 @@ async function WaitingServer({
   if (submissions.length === 3) {
     return (
       <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
-        <div>
-          <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
-          <h2>by SINE Foundation</h2>
-        </div>
-        <p>
+        <TextBlock>
           All participants have submitted their inputs and results are ready
-        </p>
+        </TextBlock>
         <div className="max-w-2xl">
           <video width="max" height="max" autoPlay loop>
             <source src="/mpc.mp4" type="video/mp4" />
@@ -40,13 +38,11 @@ async function WaitingServer({
   } else {
     return (
       <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
-        <div>
-          <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
-          <h2>by SINE Foundation</h2>
-        </div>
-        <p>Waiting for the other participants to submit their inputs</p>
-        <div className="max-w-2xl">
-          <video width="max" height="max" autoPlay loop>
+        <TextBlock>
+          Waiting for the other participants to submit their inputs
+        </TextBlock>
+        <div className="w-xs">
+          <video width="min" height="max" autoPlay loop>
             <source src="/mpc.mp4" type="video/mp4" />
           </video>
         </div>
@@ -55,9 +51,9 @@ async function WaitingServer({
           <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.6s]"></div>
           <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.9s]"></div>
         </div>
-        <p className="text-center mt-12 bg-sine-red rounded-3xl px-4 py-2 border border-black">
+        <Warning>
           Please do not close this tab until the result is shown!
-        </p>
+        </Warning>
       </div>
     );
   }

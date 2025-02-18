@@ -1,4 +1,7 @@
+import Box from "@/components/Box";
+import Input from "@/components/Input";
 import { SubmitButton } from "@/components/SubmitButton";
+import TextBlock from "@/components/TextBlock";
 import { sql } from "@/lib/db";
 import { redirect } from "next/navigation";
 
@@ -51,18 +54,12 @@ export default async function Party({
 
   return (
     <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
-      <div>
-        <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
-        <h2>
-          by <a href="https://sine.foundation">SINE Foundation</a>
-        </h2>
-      </div>
-      <p className="leading-8 max-w-xl">
+      <TextBlock>
         You&apos;ve been invited to join a private benchmark, powered by SINE
         Foundation&apos;s Secure Multi-Party Computation (MPC) engine,{" "}
         <strong>Polytune</strong>.
-      </p>
-      <p className="leading-8 max-w-xl">
+      </TextBlock>
+      <TextBlock>
         The benchmark will determine whether your value of{" "}
         <span className="font-mono bg-sine-green px-2 py-1 rounded">
           {value_name}
@@ -77,21 +74,15 @@ export default async function Party({
         </span>{" "}
         of the average of all participants.{" "}
         <strong>Your input will remain private and ecnrypted</strong>.
-      </p>
-      <div className="border border-black rounded-3xl p-4 py-6 w-2xl">
+      </TextBlock>
+      <Box>
         <p className="text-xl font-bold">Give it a try!</p>
         <form action={handleSubmission}>
           <div className="leading-8 my-10">
             <div className="mb-10">
               <p>
                 Your Name:{" "}
-                <input
-                  type="text"
-                  id="alias"
-                  name="alias"
-                  className="border-4 border-sine-green rounded-xl px-2 text-left mx-1.5"
-                  required
-                />{" "}
+                <Input type="text" id="alias" name="alias" required className="w-44"/>
               </p>
               <p>
                 Your name is used to identify you and will be visible to the
@@ -101,13 +92,13 @@ export default async function Party({
             <div>
               <p>
                 Your Input:{" "}
-                <input
+                <Input
                   type="number"
                   id="value"
                   name="value"
-                  className="border-4 rounded-xl px-2 text-left mx-1.5 border-sine-blue"
                   placeholder={`${value_name} in ${unit}`}
                   required
+                  privateInput
                 />
               </p>
               <p>
@@ -118,7 +109,7 @@ export default async function Party({
           </div>
           <SubmitButton>Submit</SubmitButton>
         </form>
-      </div>
+      </Box>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Warning from "@/components/Warning";
 import { sql } from "@/lib/db";
 
 export default async function Links({
@@ -9,15 +10,11 @@ export default async function Links({
 
   const baseUrl = process.env.BASEPATH ?? "http://localhost:3000";
 
-  const link1 = `${baseUrl}/session/${id}/party1`;
-  const link2 = `${baseUrl}/session/${id}/party2`;
-  const link3 = `${baseUrl}/session/${id}/party3`;
-
   const linkClasses =
-    "border border-black rounded-3xl px-4 pt-2.5 pb-2 underline decoration-sine-purple decoration-4 font-mono text-sm w-fit mb-4 xl:mb-0";
+    "border border-black rounded-3xl break-words px-2 sm:px-4 pt-2 pb-2 underline decoration-sine-purple decoration-4 font-mono text-sm w-xs sm:w-fit xl:mb-0";
 
   const participantClasses =
-    "bg-sine-purple border border-black rounded-3xl xl:pt-1.5 xl:w-1/3 xl:h-1/2 w-1/4";
+    "bg-sine-purple border border-black rounded-3xl xl:w-1/3 px-2 py-1 xl:py-2.5";
 
   const connectionLineClasses =
     "flex justify-center bg-black w-[1.5px] mx-auto h-6 xl:h-20";
@@ -33,14 +30,8 @@ export default async function Links({
   // TODO: Add a button to share the link via email
 
   return (
-    <div className="text-center flex flex-col justify-center items-center gap-16">
-      <div>
-        <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
-        <h2>
-          by <a href="https://sine.foundation">SINE Foundation</a>
-        </h2>
-      </div>
-      <p className="max-w-xl leading-8 -mb-6">
+    <div className="text-center flex flex-col justify-center items-center gap-10 sm:gap-16">
+      <p className="w-xs sm:w-xl leading-8 md:-mb-6 h-fit">
         Now you can share the following links with participants of your choice,
         checking that their inputs for{" "}
         <span className="font-mono bg-sine-green px-2 py-1 rounded">
@@ -55,36 +46,28 @@ export default async function Links({
           {interval_range}%
         </span>{" "}
       </p>
-      <div className="grid xl:grid-flow-col xl:grid-rows-3 xl:grid-cols-3 gap-x-3 grid-flow-row mx-4">
-        <div className="flex justify-center items-end">
-          <p className={participantClasses}>Participant 1</p>
-        </div>
-        <div className={connectionLineClasses}></div>
-        <div className={linkClasses}>
-          <a href={link1}>{link1}</a>
-        </div>
-        <div className="flex justify-center items-end">
-          <p className={participantClasses}>Participant 2</p>
-        </div>
-        <div className={connectionLineClasses}></div>
-        <div className={linkClasses}>
-          <a href={link2}>{link2}</a>
-        </div>
-        <div className="flex justify-center items-end">
-          <p className={participantClasses}>Participant 3</p>
-        </div>
-        <div className={connectionLineClasses}></div>
-        <div className={linkClasses}>
-          <a href={link3}>{link3}</a>
-        </div>
+      <div className="grid xl:grid-cols-3 gap-x-3 gap-y-6 grid-flow-row mx-4">
+        {[1, 2, 3].map((num) => {
+          const link = `${baseUrl}/session/${id}/party${num}`;
+
+          return (
+            <div key={num}>
+              <div className="flex justify-center items-end">
+                <p className={participantClasses}>Participant {num}</p>
+              </div>
+              <div className={connectionLineClasses}></div>
+              <div className={linkClasses}>
+                <a href={link}>{link}</a>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <p className="text-center">
+      <p className="text-center w-xs sm:w-xl">
         Each participant will be asked to provide an input, which will remain
         encrypted and private.
       </p>
-      <p className="text-center bg-sine-red rounded-3xl px-4 py-2 border border-black">
-        All participants must be online at the same time!
-      </p>
+      <Warning>All participants must be online at the same time!</Warning>
     </div>
   );
 }

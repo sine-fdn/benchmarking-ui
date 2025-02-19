@@ -25,11 +25,11 @@ export default async function Party({
   }
 
   const { session_id, value_name, interval_range, unit } = await getSession();
+  const { party } = await params;
 
   async function handleSubmission(formData: FormData) {
     "use server";
 
-    const { party } = await params;
     const alias = formData.get("alias") as string;
     const value = formData.get("value") as string;
 
@@ -82,7 +82,13 @@ export default async function Party({
             <div className="mb-10">
               <p>
                 Your Name:{" "}
-                <Input type="text" id="alias" name="alias" required className="w-44"/>
+                <Input
+                  type="text"
+                  id="alias"
+                  name="alias"
+                  required
+                  className="w-44"
+                />
               </p>
               <p>
                 Your name is used to identify you and will be visible to the

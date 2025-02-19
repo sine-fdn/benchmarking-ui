@@ -2,6 +2,7 @@ import { AutoRefreshWrapper } from "@/components/AutoRefreshWrapper";
 import MpcVideo from "@/components/MpcVideo";
 import TextBlock from "@/components/TextBlock";
 import Warning from "@/components/Warning";
+import Compute from "@/components/Compute";
 import { sql } from "@/lib/db";
 import Link from "next/link";
 
@@ -10,7 +11,9 @@ async function WaitingServer({
 }: {
   params: Promise<{ id: string; party: string }>;
 }) {
-  const { id } = await params;
+  const { id, party } = await params;
+  const lastChar = party[party.length - 1];
+  const partyNum = parseInt(lastChar) - 1;
 
   const submissions = await sql`
     SELECT * FROM submissions WHERE session_id = ${id}
@@ -24,6 +27,13 @@ async function WaitingServer({
         </TextBlock>
         <MpcVideo />
         <div className="flex justify-center gap-1 h6"></div>
+        <Compute
+          url={`http://localhost:8000/session/${id}/`}
+          session={id}
+          party={partyNum}
+          input={10}
+          range={10}
+        />
         <Link
           href={`/session/${id}/computing`}
           className="bg-sine-green border border-black rounded-3xl px-4 py-2 mt-12"
@@ -44,6 +54,7 @@ async function WaitingServer({
           <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.6s]"></div>
           <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.9s]"></div>
         </div>
+
         <Warning>
           Please do not close this tab until the result is shown!
         </Warning>

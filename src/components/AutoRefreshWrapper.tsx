@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export function AutoRefreshWrapper({
@@ -8,11 +8,9 @@ export function AutoRefreshWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  "use client";
-
   const router = useRouter();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       router.refresh();
     }, 2000);

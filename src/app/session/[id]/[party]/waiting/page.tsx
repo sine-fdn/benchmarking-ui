@@ -1,4 +1,5 @@
 import { AutoRefreshWrapper } from "@/components/AutoRefreshWrapper";
+import MpcVideo from "@/components/MpcVideo";
 import TextBlock from "@/components/TextBlock";
 import Warning from "@/components/Warning";
 import { sql } from "@/lib/db";
@@ -21,15 +22,10 @@ async function WaitingServer({
         <TextBlock>
           All participants have submitted their inputs and results are ready
         </TextBlock>
-        <div className="max-w-2xl">
-          <video width="max" height="max" autoPlay loop>
-            <source src="/mpc.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="flex justify-center gap-1 h6"></div>
+        <MpcVideo />
         <Link
           href={`/session/${id}/computing`}
-          className="bg-sine-green border border-black rounded-3xl px-4 py-2 mt-12"
+          className="bg-sine-green border border-black rounded-3xl px-4 py-2 animate-bounce"
         >
           See Results
         </Link>
@@ -41,11 +37,7 @@ async function WaitingServer({
         <TextBlock>
           Waiting for the other participants to submit their inputs
         </TextBlock>
-        <div className="w-xs">
-          <video width="min" height="max" autoPlay loop>
-            <source src="/mpc.mp4" type="video/mp4" />
-          </video>
-        </div>
+        <MpcVideo />
         <div className="flex justify-center gap-1">
           <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.3s]"></div>
           <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.6s]"></div>

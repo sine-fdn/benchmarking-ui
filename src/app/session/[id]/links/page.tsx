@@ -14,7 +14,7 @@ export default async function Links({
     "border border-black rounded-3xl break-words px-2 sm:px-4 pt-2 pb-2 underline decoration-sine-purple decoration-4 font-mono text-sm w-xs sm:w-fit xl:mb-0";
 
   const participantClasses =
-    "bg-sine-purple border border-black rounded-3xl xl:w-1/3 px-2 py-1 xl:py-2.5";
+    "bg-sine-purple border border-black rounded-3xl xl:w-1/3 px-2 py-1";
 
   const connectionLineClasses =
     "flex justify-center bg-black w-[1.5px] mx-auto h-6 xl:h-20";

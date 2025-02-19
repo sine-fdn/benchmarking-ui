@@ -65,7 +65,7 @@ export default async function Result({
         <DividingLine />
       </div>
       <div className="flex justify-between px-4 md:px-20 gap-2 w-full">
-        <div className="grid lg:flex gap-2 items-center">
+        <div className="flex gap-2 items-center">
           {placeParticipants(below)}
         </div>
         <p className="text-right">

@@ -20,7 +20,7 @@ async function WaitingServer({
     return (
       <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
         <TextBlock>
-          All participants have submitted their inputs and results are ready
+          All participants have submitted their inputs and results are ready.
         </TextBlock>
         <MpcVideo />
         <Link
@@ -35,7 +35,7 @@ async function WaitingServer({
     return (
       <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
         <TextBlock>
-          Waiting for the other participants to submit their inputs
+          Waiting for the other participants to submit their inputs...
         </TextBlock>
         <MpcVideo />
         <div className="flex justify-center gap-1">

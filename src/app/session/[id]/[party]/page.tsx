@@ -55,9 +55,9 @@ export default async function Party({
   return (
     <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
       <TextBlock>
-        You&apos;ve been invited to join a private benchmark, powered by SINE
-        Foundation&apos;s Secure Multi-Party Computation (MPC) engine,{" "}
-        <strong>Polytune</strong>.
+        You&apos;ve been invited to join a private benchmarking, powered by
+        SINE&apos;s Secure Multi-Party Computation (MPC) engine,{" "}
+        <a href="https://github.com/sine-fdn/polytune"><strong>Polytune</strong></a>.
       </TextBlock>
       <TextBlock>
         The benchmark will determine whether your value of{" "}
@@ -73,7 +73,7 @@ export default async function Party({
           {interval_range}%
         </span>{" "}
         of the average of all participants.{" "}
-        <strong>Your input will remain private and ecnrypted</strong>.
+        <strong>Your input will remain private and encrypted</strong>.
       </TextBlock>
       <Box>
         <p className="text-xl font-bold">Give it a try!</p>
@@ -82,7 +82,13 @@ export default async function Party({
             <div className="mb-10">
               <p>
                 Your Name:{" "}
-                <Input type="text" id="alias" name="alias" required className="w-44"/>
+                <Input
+                  type="text"
+                  id="alias"
+                  name="alias"
+                  required
+                  className="w-44"
+                />
               </p>
               <p>
                 Your name is used to identify you and will be visible to the

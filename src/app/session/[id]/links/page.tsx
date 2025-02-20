@@ -45,6 +45,7 @@ export default async function Links({
         <span className="font-mono bg-sine-green px-2 py-1 rounded">
           {interval_range}%
         </span>{" "}
+        of their average.
       </p>
       <div className="grid xl:grid-cols-3 gap-x-3 gap-y-6 grid-flow-row mx-4">
         {[1, 2, 3].map((num) => {

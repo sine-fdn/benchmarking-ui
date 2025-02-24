@@ -22,6 +22,10 @@ async function WaitingServer({
         <TextBlock>
           All participants have submitted their inputs and results are ready.
         </TextBlock>
+        <TextBlock>
+          Here you can find an animation that can provide a brief idea behind
+          how MPC protocols work:
+        </TextBlock>
         <MpcVideo />
         <Link
           href={`/session/${id}/computing`}
@@ -36,6 +40,10 @@ async function WaitingServer({
       <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
         <TextBlock>
           Waiting for the other participants to submit their inputs...
+        </TextBlock>
+        <TextBlock>
+          Here you can find an animation that can provide a brief idea behind
+          how MPC protocols work:
         </TextBlock>
         <MpcVideo />
         <div className="flex justify-center gap-1">

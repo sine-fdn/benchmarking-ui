@@ -8,7 +8,7 @@ export default async function Links({
 }) {
   const { id } = await params;
 
-  const baseUrl = process.env.BASEPATH ?? "http://localhost:9000";
+  const baseUrl = process.env.BASEPATH ?? "http://localhost:3000";
 
   const linkClasses =
     "border border-black rounded-3xl break-words px-2 sm:px-4 pt-2 pb-2 underline decoration-sine-purple decoration-4 font-mono text-sm w-xs sm:w-fit xl:mb-0";

@@ -7,17 +7,14 @@ interface ComputeTypes {
   url: string;
   session: string;
   party: number;
-  input: number;
   range: number;
 }
 
-export default function Compute({
-  url,
-  session,
-  party,
-  input,
-  range,
-}: ComputeTypes) {
+export default function Compute({ url, session, party, range }: ComputeTypes) {
+  const input = parseInt(sessionStorage.getItem("privateInput") ?? "0");
+
+  console.log("input from sessionStorage:", input);
+
   useEffect(() => {
     // for each .then() catch errors
     init().then(() => {

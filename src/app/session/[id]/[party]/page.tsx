@@ -1,9 +1,10 @@
 import Box from "@/components/Box";
-import Input from "@/components/Input";
-import { SubmitButton } from "@/components/SubmitButton";
+// import Input from "@/components/Input";
+import PrivateInputForm from "@/components/PrivateInputForm";
+// import { SubmitButton } from "@/components/SubmitButton";
 import TextBlock from "@/components/TextBlock";
 import { sql } from "@/lib/db";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 export default async function Party({
   params,
@@ -27,30 +28,30 @@ export default async function Party({
   const { session_id, value_name, interval_range, unit } = await getSession();
   const { party } = await params;
 
-  async function handleSubmission(formData: FormData) {
-    "use server";
+  // async function handleSubmission(formData: FormData) {
+  //   "use server";
 
-    const alias = formData.get("alias") as string;
-    const value = formData.get("value") as string;
+  //   const alias = formData.get("alias") as string;
+  //   const value = formData.get("value") as string;
 
-    const submission = await sql`
-      SELECT submissions FROM submissions WHERE session_id = ${session_id} AND submitter = ${party}
-    `;
+  //   const submission = await sql`
+  //     SELECT submissions FROM submissions WHERE session_id = ${session_id} AND submitter = ${party}
+  //   `;
 
-    if (submission.length != 0) {
-      console.log(
-        `Submission for party ${party} already exists, redirecting to waiting page`
-      );
-      redirect(`/session/${session_id}/${party}/waiting`);
-    }
+  //   if (submission.length != 0) {
+  //     console.log(
+  //       `Submission for party ${party} already exists, redirecting to waiting page`
+  //     );
+  //     redirect(`/session/${session_id}/${party}/waiting`);
+  //   }
 
-    await sql`
-      INSERT INTO submissions (session_id, submitter, alias, submission)
-      VALUES (${session_id}, ${party}, ${alias}, ${value})
-    `;
+  //   await sql`
+  //     INSERT INTO submissions (session_id, submitter, alias, submission)
+  //     VALUES (${session_id}, ${party}, ${alias}, ${value})
+  //   `;
 
-    redirect(`/session/${session_id}/${party}/waiting`);
-  }
+  //   redirect(`/session/${session_id}/${party}/waiting`);
+  // }
 
   return (
     <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
@@ -76,7 +77,8 @@ export default async function Party({
         <strong>Your input will remain private and ecnrypted</strong>.
       </TextBlock>
       <Box>
-        <p className="text-xl font-bold">Give it a try!</p>
+        <PrivateInputForm session_id={session_id} party={party} />
+        {/* <p className="text-xl font-bold">Give it a try!</p>
         <form action={handleSubmission}>
           <div className="leading-8 my-10">
             <div className="mb-10">
@@ -114,7 +116,7 @@ export default async function Party({
             </div>
           </div>
           <SubmitButton>Submit</SubmitButton>
-        </form>
+        </form> */}
       </Box>
     </div>
   );

@@ -31,7 +31,6 @@ async function WaitingServer({
           url={`http://localhost:8000/session/${id}/`}
           session={id}
           party={partyNum}
-          input={10}
           range={10}
         />
         <Link

@@ -57,7 +57,13 @@ export default async function Party({
       <TextBlock>
         You&apos;ve been invited to join a private benchmarking, powered by
         SINE&apos;s Secure Multi-Party Computation (MPC) engine,{" "}
-        <a href="https://github.com/sine-fdn/polytune"><strong>Polytune</strong></a>.
+        <a
+          href="https://github.com/sine-fdn/polytune"
+          className="underline decoration-sine-purple decoration-4"
+        >
+          <strong>Polytune</strong>
+        </a>
+        .
       </TextBlock>
       <TextBlock>
         The benchmark will determine whether your value of{" "}

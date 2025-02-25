@@ -6,23 +6,21 @@ import { sql } from "./db";
 export default async function handleSubmission(
   alias: string,
   session_id: string,
-  party: string
+  party: number
 ) {
-  "use server";
-
   const submission = await sql`
-      SELECT submissions FROM submissions WHERE session_id = ${session_id} AND submitter = ${party}
+      SELECT submissions FROM submissions WHERE session_id = ${session_id} AND party = ${party}
     `;
 
   if (submission.length != 0) {
     console.log(
       `Submission for party ${party} already exists, redirecting to waiting page`
     );
-    redirect(`/session/${session_id}/${party}/waiting`);
+    redirect(`/session/${session_id}/party${party}/waiting`);
   }
 
   await sql`
-      INSERT INTO submissions (session_id, submitter, alias)
+      INSERT INTO submissions (session_id, party, alias)
       VALUES (${session_id}, ${party}, ${alias})
     `;
 

@@ -4,7 +4,7 @@ import TextBlock from "@/components/TextBlock";
 import Warning from "@/components/Warning";
 import Compute from "@/components/Compute";
 import { sql } from "@/lib/db";
-import Link from "next/link";
+import WaitingDots from "@/components/WaitingDots";
 
 async function WaitingServer({
   params,
@@ -12,50 +12,46 @@ async function WaitingServer({
   params: Promise<{ id: string; party: string }>;
 }) {
   const { id, party } = await params;
-  const lastChar = party[party.length - 1];
-  const partyNum = parseInt(lastChar) - 1;
+  const partyIndex = parseInt(party);
 
   const submissions = await sql`
     SELECT * FROM submissions WHERE session_id = ${id}
   `;
 
+  const intervalRangeDB = await sql`
+    SELECT interval_range
+    FROM sessions
+    WHERE session_id = ${id}
+  `;
+
+  const intervalRange = parseInt(intervalRangeDB[0].interval_range);
+
   if (submissions.length === 3) {
     return (
       <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
         <TextBlock>
-          All participants have submitted their inputs and results are ready
+          All inputs submited. The result is being privately computed...
         </TextBlock>
         <MpcVideo />
         <div className="flex justify-center gap-1 h6"></div>
         <Compute
           url={`http://localhost:8000/session/${id}/`}
           session={id}
-          party={partyNum}
-          range={10}
+          party={partyIndex}
+          range={intervalRange}
         />
-        <Link
-          href={`/session/${id}/computing`}
-          className="bg-sine-green border border-black rounded-3xl px-4 py-2 mt-12"
-        >
-          See Results
-        </Link>
       </div>
     );
   } else {
     return (
       <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
         <TextBlock>
-          Waiting for the other participants to submit their inputs
+          Waiting for the other participants to submit their inputs.
         </TextBlock>
         <MpcVideo />
-        <div className="flex justify-center gap-1">
-          <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.3s]"></div>
-          <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.6s]"></div>
-          <div className="rounded-4xl bg-sine-green border border-black w-2 h-2 animate-bounce [animation-delay:0.9s]"></div>
-        </div>
-
+        <WaitingDots />
         <Warning>
-          Please do not close this tab until the result is shown!
+          Please do not close this tab until the result is ready!
         </Warning>
       </div>
     );

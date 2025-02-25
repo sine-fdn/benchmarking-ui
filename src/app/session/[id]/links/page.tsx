@@ -47,13 +47,13 @@ export default async function Links({
         </span>{" "}
       </p>
       <div className="grid xl:grid-cols-3 gap-x-3 gap-y-6 grid-flow-row mx-4">
-        {[1, 2, 3].map((num) => {
+        {[0, 1, 2].map((num) => {
           const link = `${baseUrl}/session/${id}/party${num}`;
 
           return (
             <div key={num}>
               <div className="flex justify-center items-end">
-                <p className={participantClasses}>Participant {num}</p>
+                <p className={participantClasses}>Participant {num + 1}</p>
               </div>
               <div className={connectionLineClasses}></div>
               <div className={linkClasses}>

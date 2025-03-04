@@ -35,7 +35,7 @@ async function WaitingServer({
         <MpcVideo />
         <div className="flex justify-center gap-1 h6"></div>
         <Compute
-          url={`http://localhost:8000/session/${id}/`}
+          url={`https://parlay.fly.dev/session/${id}/`}
           session={id}
           party={partyIndex}
           range={intervalRange}

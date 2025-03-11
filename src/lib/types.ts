@@ -6,3 +6,10 @@ export interface Session {
   interval_range?: number; // The interval range
   result?: JSON; // The result of the session
 }
+
+export interface Submission {
+  submissionID: number; // The unique submission ID
+  sessionID: string; // The unique session ID
+  party: number; // The party number
+  alias: string; // The alias of the party
+}

@@ -1,44 +1,94 @@
 import { sql } from "@/lib/db";
 import Link from "next/link";
+import { Submission } from "@/lib/types";
+
+interface Result {
+  alias: string;
+  bucket: string;
+}
+
+type MPCResult = ("Bucket::Above" | "Bucket::Within" | "Bucket::Below")[];
 
 export default async function Result({
   params,
+  searchParams,
 }: {
-  params: Promise<{ id: string; party: string }>;
+  params: Promise<{ id: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const results: Result[] = [
+    { alias: "", bucket: "" },
+    { alias: "", bucket: "" },
+    { alias: "", bucket: "" },
+  ];
+
   const { id } = await params;
 
-  const resultDB = await sql`
-    SELECT result FROM sessions WHERE session_id = ${id}
+  const intervalRangeDB = await sql`
+    SELECT interval_range
+    FROM sessions
+    WHERE session_id = ${id}
   `;
 
-  const result = resultDB[0].result;
+  const intervalRange = parseInt(intervalRangeDB[0].interval_range);
 
-  const session = await sql`
-    SELECT * FROM sessions WHERE session_id = ${id}
+  const query = (await searchParams) ?? {};
+
+  let mpcResult: MPCResult;
+  if (typeof query.result === "string") {
+    try {
+      mpcResult = JSON.parse(query.result);
+      if (!Array.isArray(mpcResult)) {
+        throw new Error("Result is not an array.");
+      }
+    } catch (error) {
+      throw new Error("Failed to parse result: " + error);
+    }
+  } else {
+    throw new Error("Result is not a string.");
+  }
+
+  const parties = await sql`
+    SELECT *
+    FROM submissions
+    WHERE session_id = ${id}
   `;
 
-  const { interval_range } = session[0];
+  const submissions: Submission[] = parties.map((party) => {
+    return {
+      submissionID: party.submission_id,
+      sessionID: party.session_id,
+      party: party.party,
+      alias: party.alias,
+    };
+  });
 
-  type Result = "within" | "below" | "above";
+  for (const s of submissions) {
+    results[s.party].alias = s.alias;
+  }
 
-  const above = result.filter((r: { result: Result }) => r.result === "above");
-  const within = result.filter(
-    (r: { result: Result }) => r.result === "within"
-  );
-  const below = result.filter((r: { result: Result }) => r.result === "below");
+  for (const [i, bucket] of mpcResult.entries()) {
+    results[i].bucket = bucket;
+  }
 
-  function placeParticipants(group: []) {
-    return group.map((party: { submitter: string; alias: string }) => {
-      return (
-        <p
-          key={party.submitter}
-          className="border rounded-xl border-black px-4 bg-sine-blue h-fit"
-        >
-          {party.alias}
-        </p>
-      );
-    });
+  // sort results into 3 different arrays, one for each bucket
+  const above: Result[] = results.filter((r) => r.bucket === "Bucket::Above");
+  const within: Result[] = results.filter((r) => r.bucket === "Bucket::Within");
+  const below: Result[] = results.filter((r) => r.bucket === "Bucket::Below");
+
+  function placeParticipants(group: Result[]) {
+    if (group.length > 0) {
+      return group.map((party, index) => {
+        return (
+          <p
+            key={index}
+            className="border rounded-xl border-black px-4 bg-sine-blue h-fit"
+          >
+            {party.alias}
+          </p>
+        );
+      });
+    }
   }
 
   return (
@@ -49,7 +99,7 @@ export default async function Result({
         </div>
         <p className="text-right">
           {"> "}
-          {interval_range}% above average
+          {intervalRange}% above average
         </p>
       </div>
       <div className="w-xs md:w-xl">
@@ -59,7 +109,7 @@ export default async function Result({
             <div className="grid lg:flex gap-2 items-center">
               {placeParticipants(within)}
             </div>
-            <p className="text-right">within {interval_range}% of average</p>
+            <p className="text-right">within {intervalRange}% of average</p>
           </div>
         </div>
         <DividingLine />
@@ -70,7 +120,7 @@ export default async function Result({
         </div>
         <p className="text-right">
           {"< "}
-          {interval_range}% below average
+          {intervalRange}% below average
         </p>
       </div>
       <div className="flex justify-center mt-6 flex-col items-center gap-12">

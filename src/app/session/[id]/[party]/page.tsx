@@ -1,9 +1,7 @@
 import Box from "@/components/Box";
-import Input from "@/components/Input";
-import { SubmitButton } from "@/components/SubmitButton";
+import PrivateInputForm from "@/components/PrivateInputForm";
 import TextBlock from "@/components/TextBlock";
 import { sql } from "@/lib/db";
-import { redirect } from "next/navigation";
 
 export default async function Party({
   params,
@@ -25,32 +23,8 @@ export default async function Party({
   }
 
   const { session_id, value_name, interval_range, unit } = await getSession();
-
-  async function handleSubmission(formData: FormData) {
-    "use server";
-
-    const { party } = await params;
-    const alias = formData.get("alias") as string;
-    const value = formData.get("value") as string;
-
-    const submission = await sql`
-      SELECT submissions FROM submissions WHERE session_id = ${session_id} AND submitter = ${party}
-    `;
-
-    if (submission.length != 0) {
-      console.log(
-        `Submission for party ${party} already exists, redirecting to waiting page`
-      );
-      redirect(`/session/${session_id}/${party}/waiting`);
-    }
-
-    await sql`
-      INSERT INTO submissions (session_id, submitter, alias, submission)
-      VALUES (${session_id}, ${party}, ${alias}, ${value})
-    `;
-
-    redirect(`/session/${session_id}/${party}/waiting`);
-  }
+  const { party } = await params;
+  const partyIndex = parseInt(party[party.length - 1]);
 
   return (
     <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
@@ -82,45 +56,12 @@ export default async function Party({
         <strong>Your input will remain private and encrypted</strong>.
       </TextBlock>
       <Box>
-        <p className="text-xl font-bold">Give it a try!</p>
-        <form action={handleSubmission}>
-          <div className="leading-8 my-10">
-            <div className="mb-10">
-              <p>
-                Your Name:{" "}
-                <Input
-                  type="text"
-                  id="alias"
-                  name="alias"
-                  required
-                  className="w-44"
-                />
-              </p>
-              <p>
-                Your name is used to identify you and will be visible to the
-                other participants.{" "}
-              </p>
-            </div>
-            <div>
-              <p>
-                Your Input:{" "}
-                <Input
-                  type="number"
-                  id="value"
-                  name="value"
-                  placeholder={`${value_name} in ${unit}`}
-                  required
-                  privateInput
-                />
-              </p>
-              <p>
-                Your input is never revealed to the other participants and will
-                remain encrypted.{" "}
-              </p>
-            </div>
-          </div>
-          <SubmitButton>Submit</SubmitButton>
-        </form>
+        <PrivateInputForm
+          sessionID={session_id}
+          party={partyIndex}
+          valueName={value_name}
+          unit={unit}
+        />
       </Box>
     </div>
   );

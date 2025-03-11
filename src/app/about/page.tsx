@@ -6,8 +6,8 @@ export default function About() {
     <div className="flex flex-col gap-4 items-center justify-center">
       <h2 className="text-xl font-bold">About MPC</h2>
       <TextBlock>
-        Here you can find an animation that explains how the protocol used in
-        the benchmark works:
+        Here you can find an animation that can provide a brief idea behind how
+        MPC protocols work:
       </TextBlock>
       <div className="max-w-2xl">
         <video width="max" height="max" autoPlay loop>
@@ -23,7 +23,13 @@ export default function About() {
       </a>
       <TextBlock>
         Do not hesitate to reach out if you want to learn more about{" "}
-        <strong>Polytune</strong> or have a use case you would like to discuss:{" "}
+        <a
+          href="https://github.com/sine-fdn/polytune"
+          className="underline decoration-sine-purple decoration-4"
+        >
+          <strong>Polytune</strong>
+        </a>{" "}
+        or have a use case you would like to discuss:{" "}
         <a
           href="mailto:vorstand@sine.foundation"
           className="underline decoration-sine-purple decoration-4"

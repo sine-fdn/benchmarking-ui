@@ -38,14 +38,20 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-between items-center gap-12 max-w-2xl">
       <TextBlock>
-        With SINE&apos;s private benchmark, three participants can benchmark a
-        value <strong>without disclosing their inputs</strong> and{" "}
+        With SINE&apos;s private benchmarking, three participants can benchmark
+        a value <strong>without disclosing their inputs</strong> and{" "}
         <strong>without sharing any data with SINE</strong>.
       </TextBlock>
       <TextBlock>
-        <strong>Polytune</strong>, SINE&apos;s Secure Multi-Party Computation
-        (MPC) engine, brings advanced cryptography to everyone. You can use it
-        in the browser, without any technical knowledge.
+        SINE&apos;s Secure Multi-Party Computation (MPC) engine,{" "}
+        <a
+          href="https://github.com/sine-fdn/polytune"
+          className="underline decoration-sine-purple decoration-4"
+        >
+          <strong>Polytune</strong>
+        </a>
+        , brings advanced cryptography to everyone. You can use it in the
+        browser, without any technical knowledge.
       </TextBlock>
       <Box>
         <p className="text-xl font-bold mb-6">Give it a try!</p>
@@ -82,8 +88,7 @@ export default function Home() {
               placeholder="10"
               required
             />
-            % of each other. <em>Privately</em>, using strong encryption built
-            by SINE Foundation.
+            % of the average. <em>Privately</em>, using strong cryptographic methods built by SINE
           </p>
           <SubmitButton className="mt-2">Start</SubmitButton>
         </form>
@@ -93,7 +98,7 @@ export default function Home() {
         href="/about"
         className="underline decoration-sine-purple decoration-4"
       >
-        About this Benchmark
+        About MPC
       </a>
     </div>
   );

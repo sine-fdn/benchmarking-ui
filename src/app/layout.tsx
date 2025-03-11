@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className="overflow-y-scroll flex flex-col justify-between items-center text-center bg-white rounded-2xl border border-black h-full w-full">
             <main className="lg:max-w-6xl flex flex-col items-center justify-center">
               <div className="my-12 w-xs md:w-lg text-center">
-                <h1 className="-mb-2">Private Multi-Party Benchmark</h1>
+                <h1 className="-mb-2">Private Multi-Party Benchmarking</h1>
                 <h2>SINE Foundation</h2>
               </div>
               {children}

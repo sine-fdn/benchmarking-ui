@@ -61,6 +61,7 @@ export default async function Party({
           party={partyIndex}
           valueName={value_name}
           unit={unit}
+          interval={interval_range}
         />
       </Box>
     </div>

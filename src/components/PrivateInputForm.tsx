@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import handleSubmission from "@/lib/handleSubmission";
 import { SubmitButton } from "./SubmitButton";
+import Link from "next/link";
 
 interface FormData {
   alias: string;
@@ -14,6 +15,7 @@ interface Props {
   party: number;
   valueName: string;
   unit: string;
+  interval: number;
 }
 
 export default function PrivateInputForm({
@@ -21,6 +23,7 @@ export default function PrivateInputForm({
   party,
   valueName,
   unit,
+  interval,
 }: Props) {
   const [formData, setFormData] = useState<FormData>({
     alias: "",
@@ -51,6 +54,18 @@ export default function PrivateInputForm({
     handleSubmission(submissionData.alias, sessionID, party);
   }
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        setIsOpen(false);
+      }, 10000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <div className="leading-8">
@@ -73,7 +88,7 @@ export default function PrivateInputForm({
           </p>
         </div>
         <div className="mb-10">
-          <p>
+          <p className="flex items-center justify-center">
             Your Input:{" "}
             <input
               type="number"
@@ -84,6 +99,41 @@ export default function PrivateInputForm({
               placeholder={`${valueName} in ${unit}`}
               required
             />
+            <span
+              className="relative flex items-center"
+              onBlur={() => setIsOpen(false)}
+              tabIndex={-1}
+            >
+              <button
+                className={`w-6 h-6 flex items-center justify-center rounded-full border-2 border-sine-blue hover:bg-sine-blue ${
+                  isOpen && "bg-sine-blue"
+                }`}
+                onMouseEnter={() => {
+                  setIsOpen(true);
+                }}
+              >
+                ?
+              </button>
+              {isOpen && (
+                <span
+                  className="absolute left-8 top-0 bg-white border-4 border-sine-blue text-sm p-2 rounded-xl shadow-md min-w-48 z-10"
+                  onMouseEnter={() => setIsOpen(true)}
+                  onMouseLeave={() => setIsOpen(false)}
+                >
+                  Your input will remain private and encrypted but all
+                  participants learn if it is above, below, or within the{" "}
+                  {interval}% range of the average.{" "}
+                  <Link
+                    href={"/about"}
+                    className="underline decoration-sine-purple decoration-4"
+                    target="_blank"
+                  >
+                    Click here
+                  </Link>{" "}
+                  to learn more about how MPC makes this possible.
+                </span>
+              )}
+            </span>
           </p>
           <p>
             Your input is never revealed to the other participants and will

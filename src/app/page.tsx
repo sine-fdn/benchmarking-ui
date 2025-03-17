@@ -88,7 +88,8 @@ export default function Home() {
               placeholder="10"
               required
             />
-            % of the average. <em>Privately</em>, using strong cryptographic methods built by SINE
+            % of their average. <em>Privately</em>, using strong cryptographic
+            methods built by SINE
           </p>
           <SubmitButton className="mt-2">Start</SubmitButton>
         </form>

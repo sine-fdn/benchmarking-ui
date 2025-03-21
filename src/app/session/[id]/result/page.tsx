@@ -119,7 +119,7 @@ export default async function Result({
           {placeParticipants(below)}
         </div>
         <p className="text-right">
-          {"< "}
+          {"> "}
           {intervalRange}% below average
         </p>
       </div>

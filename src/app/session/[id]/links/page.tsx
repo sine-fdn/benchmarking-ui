@@ -11,10 +11,10 @@ export default async function Links({
   const baseUrl = process.env.BASEPATH ?? "http://localhost:3000";
 
   const linkClasses =
-    "border border-black rounded-3xl break-words px-2 sm:px-4 pt-2 pb-2 underline decoration-sine-purple decoration-4 font-mono text-sm w-xs sm:w-fit xl:mb-0";
+    "border border-black rounded-3xl break-all px-2 sm:px-4 pt-2 pb-2 underline decoration-sine-purple decoration-4 font-mono text-sm w-xs sm:w-xs xl:mb-0";
 
   const participantClasses =
-    "bg-sine-purple border border-black rounded-3xl xl:w-1/3 px-2 py-1";
+    "bg-sine-purple border border-black rounded-3xl px-2 xl:w-fit py-1";
 
   const connectionLineClasses =
     "flex justify-center bg-black w-[1.5px] mx-auto h-6 xl:h-20";
@@ -47,7 +47,7 @@ export default async function Links({
         </span>{" "}
         of their average.
       </p>
-      <div className="grid xl:grid-cols-3 gap-x-3 gap-y-6 grid-flow-row mx-4">
+      <div className="grid xl:grid-cols-3 gap-x-5 gap-y-6 grid-flow-row mx-4">
         {[0, 1, 2].map((num) => {
           const link = `${baseUrl}/session/${id}/party${num}`;
 

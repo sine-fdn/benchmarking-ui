@@ -1,0 +1,15 @@
+{
+  "name": "polytune-wasm-http-channels",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "polytune_wasm_http_channels_bg.wasm",
+    "polytune_wasm_http_channels.js",
+    "polytune_wasm_http_channels.d.ts"
+  ],
+  "main": "polytune_wasm_http_channels.js",
+  "types": "polytune_wasm_http_channels.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

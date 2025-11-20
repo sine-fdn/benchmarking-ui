@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
-import localFont from "next/font/local";
 import { ReactNode } from "react";
 import ScrollToTop from "@/components/ScrollToTopWrapper";
 import { Inter } from "next/font/google";

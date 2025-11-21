@@ -26,6 +26,11 @@ async function WaitingServer({
 
   const intervalRange = parseInt(intervalRangeDB[0].interval_range);
 
+  const channelServerBasePath =
+    process.env.CHANNEL_SERVER_BASEPATH || "https://parlay.fly.dev";
+
+  const channelServer = `${channelServerBasePath}/session/${id}/`;
+
   if (submissions.length === 3) {
     return (
       <div className="flex flex-col justify-center items-center gap-12 max-w-2xl">
@@ -35,7 +40,7 @@ async function WaitingServer({
         <MpcVideo />
         <div className="flex justify-center gap-1 h6"></div>
         <Compute
-          url={`https://parlay.fly.dev/session/${id}/`}
+          url={channelServer}
           session={id}
           party={partyIndex}
           range={intervalRange}

@@ -1,40 +1,30 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
-import localFont from "next/font/local";
 import { ReactNode } from "react";
 import ScrollToTop from "@/components/ScrollToTopWrapper";
+import { Inter } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Polytune",
   description: "Verification Pilot UI",
 };
 
-const favoritFont = localFont({
-  src: [
-    {
-      path: "../../public/fonts/favorit-light.ttf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/favorit-medium.ttf",
-      weight: "500",
-      style: "bold",
-    },
-  ],
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"], // Add weights you want to use
   display: "swap",
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={favoritFont.className}>
+    <html lang="en" className={inter.className}>
       <ScrollToTop>
         <body className="bg-sine-green flex justify-center items-center h-screen w-screen p-2">
           <div className="overflow-y-scroll flex flex-col justify-between items-center text-center bg-white rounded-2xl border border-black h-full w-full">
             <main className="lg:max-w-6xl flex flex-col items-center justify-center">
-              <div className="my-12 w-xs md:w-lg text-center">
-                <h1 className="-mb-2">Private Multi-Party Benchmarking</h1>
+              <div className="my-12 text-center">
+                <h1>Private Multi-Party Benchmarking</h1>
                 <h2>SINE Foundation</h2>
               </div>
               {children}
